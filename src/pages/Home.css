@@ -1,0 +1,27 @@
+.home {
+  width: 100%;
+  /* border: var(--wireframe); */
+  height: calc(100vh - 90px);
+}
+
+.atlas-emotions {
+  /* border: var(--wireframe); */
+  width: 100%;
+  height: 80px;
+}
+
+.atlas-emotions h3 {
+  margin: 8px;
+}
+
+.main-container {
+  /* border: var(--wireframe); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: calc(100% - 120px);
+}
+
+.main-container a {
+  text-decoration: none;
+}
