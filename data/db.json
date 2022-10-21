@@ -3,6 +3,7 @@
     {
       "id": "1",
       "name": "Enjoyment",
+      "category": "positive",
       "subemotions": [
         {
           "id": "E1",
