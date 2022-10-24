@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useFetch = (url, _options = { method: 'get', body: null }) => {
   const [data, setData] = useState(null);

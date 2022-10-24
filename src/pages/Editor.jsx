@@ -1,5 +1,3 @@
-import React from 'react';
-import { useState } from 'react';
 import { useFetch } from '../hooks/useFetch';
 import './Editor.css';
 
