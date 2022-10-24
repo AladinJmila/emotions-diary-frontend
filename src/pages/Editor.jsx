@@ -2,7 +2,8 @@ import { useEmotions } from '../hooks/useEmotions';
 import './Editor.css';
 
 const Editor = () => {
-  const { data: emotions } = useEmotions();
+  const { emotions, loadEmotions } = useEmotions();
+  loadEmotions();
 
   return (
     <>
