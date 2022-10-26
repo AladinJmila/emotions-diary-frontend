@@ -1,9 +1,13 @@
+import { useEffect } from 'react';
 import { useEmotions } from '../hooks/useEmotions';
 import './Editor.css';
 
 const Editor = () => {
   const { emotions, loadEmotions } = useEmotions();
-  loadEmotions();
+
+  useEffect(() => {
+    loadEmotions();
+  }, []);
 
   return (
     <>

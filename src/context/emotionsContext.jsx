@@ -27,7 +27,7 @@ export function EmotionsProvider({ children }) {
   // const payload = useFetch('http://localhost:3000/emotions');
   const loadEmotions = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/emotions');
+      const { data } = await axios.get('http://localhost:3000/emotions', {});
 
       dispatch({ type: 'GET_EMOTIONS', payload: data });
     } catch (error) {
