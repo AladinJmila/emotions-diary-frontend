@@ -1,0 +1,110 @@
+{
+  "emotions": [
+    {
+      "id": "1",
+      "name": "Enjoyment",
+      "category": "positive",
+      "subemotions": [
+        {
+          "id": "E1",
+          "name": "Ecstacy",
+          "description": "Rapturous delight. A state of very great happiness, nearly overwhelming."
+        },
+        {
+          "id": "E2",
+          "name": "Excitement",
+          "description": "A powerful enthusiasm."
+        },
+        {
+          "id": "E3",
+          "name": "Wonder",
+          "description": "An experience of something that is vey surprising, beautiful, amazing or hard to believe."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Anger",
+      "subemotions": [
+        {
+          "id": "A1",
+          "name": "Fury",
+          "description": "Uncontrolled and often violent anger."
+        },
+        {
+          "id": "A2",
+          "name": "Vengefulness",
+          "description": "Desire to retaliate after one is hurt."
+        },
+        {
+          "id": "A3",
+          "name": "Bitterness",
+          "description": "Anger after unfair treatment."
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Sadness",
+      "subemotions": [
+        {
+          "id": "S1",
+          "name": "Anguish",
+          "description": "Intense sadness of suffering."
+        },
+        {
+          "id": "S2",
+          "name": "Sorrow",
+          "description": "A feeling of distress and sadness, often caused by a loss."
+        },
+        {
+          "id": "S3",
+          "name": "Grief",
+          "description": "Sadness over a deep loss."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Fear",
+      "subemotions": [
+        {
+          "id": "F1",
+          "name": "Terror",
+          "description": "Intense, overpowering fear."
+        },
+        {
+          "id": "F2",
+          "name": "Horror",
+          "description": "A mixture of fear, disgust, and shock."
+        },
+        {
+          "id": "F3",
+          "name": "Panic",
+          "description": "Sudden uncontrollable fear."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Disgust",
+      "subemotions": [
+        {
+          "id": "S1",
+          "name": "Loathing",
+          "description": "Intense disgust focused on a person. Intense disugust focused on oneself is called self-loathing."
+        },
+        {
+          "id": "S2",
+          "name": "Abhorrence",
+          "description": "A mixture of intense disgust and hatred."
+        },
+        {
+          "id": "S3",
+          "name": "Revulsion",
+          "description": "A mixture of disgust and loathing."
+        }
+      ]
+    }
+  ]
+}

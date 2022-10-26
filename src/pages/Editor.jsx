@@ -1,12 +1,13 @@
-import { useFetch } from '../hooks/useFetch';
+import { useEffect } from 'react';
+import { useEmotions } from '../hooks/useEmotions';
 import './Editor.css';
 
 const Editor = () => {
-  const {
-    data: emotions,
-    loading,
-    error,
-  } = useFetch('http://localhost:3000/emotions');
+  const { emotions, loadEmotions } = useEmotions();
+
+  useEffect(() => {
+    loadEmotions();
+  }, []);
 
   return (
     <>
