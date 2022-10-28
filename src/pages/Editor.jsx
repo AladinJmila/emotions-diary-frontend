@@ -13,7 +13,7 @@ const Editor = () => {
   }, []);
 
   return (
-    <div className='editor'>
+    <div className='editor full-vh'>
       <h2>Editor</h2>
       {emotions && emotions.map(emo => <p key={emo.id}>{emo.name}</p>)}
       {showModal && (
@@ -21,7 +21,9 @@ const Editor = () => {
           <EmotionForm />
         </Modal>
       )}
-      <button onClick={() => setShowModal(true)}>Add</button>
+      <div className='bottom'>
+        <button onClick={() => setShowModal(true)}>Add</button>
+      </div>
     </div>
   );
 };

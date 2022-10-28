@@ -39,3 +39,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+label,
+input {
+  display: block;
+  text-align: left;
+  width: 100%;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+button {
+  display: block;
+  margin: 20px auto 10px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-size: 1.2em;
+}
+
+.full-vh {
+  height: calc(100vh - 110px);
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+}

@@ -7,7 +7,9 @@ function EmotionForm() {
       <label htmlFor='name'>Name</label>
       <input type='text' id='name' />
 
-      <button>Submit</button>
+      <div className='bottom'>
+        <button>Submit</button>
+      </div>
     </form>
   );
 }

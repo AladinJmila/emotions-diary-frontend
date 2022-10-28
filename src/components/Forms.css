@@ -1,23 +1,9 @@
 .emotion-form {
   height: calc(100vh - 140px);
   background-color: transparent;
+  position: relative;
 }
 
-form label,
-form input {
-  display: block;
-  text-align: left;
-  width: 100%;
-  margin: 10px auto;
-  padding: 10px;
-  font-size: 1.2em;
-}
-
-button {
-  display: block;
-  margin: 20px auto 10px;
-  width: 100%;
-  padding: 10px;
-  border: none;
-  font-size: 1.2em;
+.emotion-form .bottom {
+  padding: 0;
 }
