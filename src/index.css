@@ -41,13 +41,19 @@ code {
 }
 
 label,
-input {
+input,
+select,
+textarea {
   display: block;
   text-align: left;
   width: 100%;
   margin: 10px auto;
   padding: 10px;
   font-size: 1.2em;
+}
+
+label {
+  padding: 0;
 }
 
 button {
@@ -60,7 +66,7 @@ button {
 }
 
 .full-vh {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 90px);
 }
 
 .bottom {

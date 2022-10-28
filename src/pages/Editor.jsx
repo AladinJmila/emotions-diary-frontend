@@ -18,7 +18,7 @@ const Editor = () => {
       {emotions && emotions.map(emo => <p key={emo.id}>{emo.name}</p>)}
       {showModal && (
         <Modal>
-          <EmotionForm />
+          <EmotionForm setShowModal={setShowModal} />
         </Modal>
       )}
       <div className='bottom'>
