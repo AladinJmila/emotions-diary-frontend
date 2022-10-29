@@ -1,119 +1,119 @@
 {
-  "groups": [
+  "categories": [
     {
       "id": "1",
       "name": "Enjoyment",
-      "category": "positive"
+      "energy": "positive"
     },
     {
       "id": "2",
       "name": "Anger",
-      "category": "Negative"
+      "energy": "Negative"
     },
     {
       "id": "3",
       "name": "Sadness",
-      "category": "Negative"
+      "energy": "Negative"
     },
     {
       "id": "4",
       "name": "Fear",
-      "category": "Negative"
+      "energy": "Negative"
     },
     {
       "id": "5",
       "name": "Disgust",
-      "category": "Negative"
+      "energy": "Negative"
     }
   ],
   "emotions": [
     {
       "id": "E1",
-      "groupId": "1",
+      "categoryId": "1",
       "name": "Ecstacy",
       "description": "Rapturous delight. A state of very great happiness, nearly overwhelming."
     },
     {
       "id": "E2",
-      "groupId": "1",
+      "categoryId": "1",
       "name": "Excitement",
       "description": "A powerful enthusiasm."
     },
     {
       "id": "E3",
-      "groupId": "1",
+      "categoryId": "1",
       "name": "Wonder",
       "description": "An experience of something that is vey surprising, beautiful, amazing or hard to believe."
     },
     {
       "id": "A1",
-      "groupId": "2",
+      "categoryId": "2",
       "name": "Fury",
       "description": "Uncontrolled and often violent anger."
     },
     {
       "id": "A2",
-      "groupId": "2",
+      "categoryId": "2",
       "name": "Vengefulness",
       "description": "Desire to retaliate after one is hurt."
     },
     {
       "id": "A3",
-      "groupId": "2",
+      "categoryId": "2",
       "name": "Bitterness",
       "description": "Anger after unfair treatment."
     },
     {
       "id": "S1",
-      "groupId": "3",
+      "categoryId": "3",
       "name": "Anguish",
       "description": "Intense sadness of suffering."
     },
     {
       "id": "S2",
-      "groupId": "3",
+      "categoryId": "3",
       "name": "Sorrow",
       "description": "A feeling of distress and sadness, often caused by a loss."
     },
     {
       "id": "S3",
-      "groupId": "3",
+      "categoryId": "3",
       "name": "Grief",
       "description": "Sadness over a deep loss."
     },
     {
       "id": "F1",
-      "groupId": "4",
+      "categoryId": "4",
       "name": "Terror",
       "description": "Intense, overpowering fear."
     },
     {
       "id": "F2",
-      "groupId": "4",
+      "categoryId": "4",
       "name": "Horror",
       "description": "A mixture of fear, disgust, and shock."
     },
     {
       "id": "F3",
-      "groupId": "4",
+      "categoryId": "4",
       "name": "Panic",
       "description": "Sudden uncontrollable fear."
     },
     {
       "id": "D1",
-      "groupId": "5",
+      "categoryId": "5",
       "name": "Loathing",
       "description": "Intense disgust focused on a person. Intense disugust focused on oneself is called self-loathing."
     },
     {
       "id": "D2",
-      "groupId": "5",
+      "categoryId": "5",
       "name": "Abhorrence",
       "description": "A mixture of intense disgust and hatred."
     },
     {
       "id": "D3",
-      "groupId": "5",
+      "categoryId": "5",
       "name": "Revulsion",
       "description": "A mixture of disgust and loathing."
     }

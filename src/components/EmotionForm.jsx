@@ -3,21 +3,18 @@ import { useEmotions } from '../hooks/useEmotions';
 import { randomId } from '../utilities/helpers';
 import './Forms.css';
 
-const EmotionForm = ({ setShowModal }) => {
-  const [groupId, setGroupId] = useState('');
+const EmotionForm = ({ setShowModal, categories }) => {
+  const [categoryId, setCategoryId] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const { emotions, loadEmotions, addEmotion } = useEmotions();
-
-  useEffect(() => {
-    loadEmotions();
-  }, []);
+  const { addEmotion } = useEmotions();
+  useEffect(() => {}, []);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    addEmotion({ id: randomId(), groupId, name, description });
-    console.log({ id: randomId(), groupId, name, description });
+    // addEmotion({ id: randomId(), categoryId, name, description });
+    console.log({ id: randomId(), categoryId, name, description });
     setName('');
     setDescription('');
     setShowModal(false);
@@ -25,13 +22,13 @@ const EmotionForm = ({ setShowModal }) => {
 
   return (
     <form className='emotion-form' onSubmit={handleSubmit}>
-      <label htmlFor='group'>Group</label>
-      <select id='group' onChange={e => setGroupId(e.target.value)}>
+      <label htmlFor='category'>Category</label>
+      <select id='category' onChange={e => setCategoryId(e.target.value)}>
         <option value=''></option>
-        {emotions &&
-          emotions.map(em => (
-            <option key={em.id} value={em.id}>
-              {em.name}
+        {categories &&
+          categories.map(g => (
+            <option key={g.id} value={g.id}>
+              {g.name}
             </option>
           ))}
       </select>
