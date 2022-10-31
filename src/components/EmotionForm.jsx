@@ -22,6 +22,9 @@ const EmotionForm = ({ setShowModal, categories }) => {
 
   return (
     <form className='emotion-form' onSubmit={handleSubmit}>
+      <button className='close-btn' onClick={() => setShowModal(false)}>
+        X
+      </button>
       <label htmlFor='category'>Category</label>
       <select id='category' onChange={e => setCategoryId(e.target.value)}>
         <option value=''></option>

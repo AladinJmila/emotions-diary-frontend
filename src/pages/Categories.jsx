@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import EmotionForm from '../components/EmotionForm';
 import Modal from '../components/Modal';
 import { useCategories } from '../hooks/useCategories';
-import { useFetch } from '../hooks/useFetch';
 
-import './Editor.css';
+import './Categories.css';
 
 const Editor = () => {
   const [showModal, setShowModal] = useState(false);
   const { categories, loadCategories } = useCategories();
-  // const { data: categories } = useFetch('http://localhost:3000/categories');
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadCategories();
@@ -18,7 +18,18 @@ const Editor = () => {
   return (
     <div className='editor full-vh'>
       <h2>Editor</h2>
-      {categories && categories.map(g => <p key={g.id}>{g.name}</p>)}
+      {categories &&
+        categories.map(g => (
+          <p
+            key={g.id}
+            showModal={showModal}
+            categories={categories}
+            setShowModal={setShowModal}
+            onClick={() => navigate(`/categories/${g.id}`)}
+          >
+            {g.name}
+          </p>
+        ))}
       {showModal && (
         <Modal>
           <EmotionForm setShowModal={setShowModal} categories={categories} />

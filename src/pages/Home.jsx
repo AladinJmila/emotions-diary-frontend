@@ -11,8 +11,8 @@ const Home = () => {
         </a>
       </div>
       <div className='main-container'>
-        <a href='/editor'>
-          <h2>Edit</h2>
+        <a href='/categories'>
+          <h2>Categories</h2>
         </a>
         <a href='/inspector'>
           <h2>Inspect</h2>
