@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCategories } from '../hooks/useCategories';
+import { useUI } from '../hooks/useUI';
 import EmotionForm from '../components/EmotionForm';
 import Modal from '../components/Modal';
-import { useCategories } from '../hooks/useCategories';
 
 import './Categories.css';
 
 const Editor = () => {
-  const [showModal, setShowModal] = useState(false);
   const { categories, loadCategories } = useCategories();
+  const { showModal, setShowModal } = useUI();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,18 +18,11 @@ const Editor = () => {
 
   return (
     <div className='editor full-vh'>
-      <h2>Editor</h2>
       {categories &&
         categories.map(g => (
-          <p
-            key={g.id}
-            showModal={showModal}
-            categories={categories}
-            setShowModal={setShowModal}
-            onClick={() => navigate(`/categories/${g.id}`)}
-          >
+          <h2 key={g.id} onClick={() => navigate(`/categories/${g.id}`)}>
             {g.name}
-          </p>
+          </h2>
         ))}
       {showModal && (
         <Modal>
