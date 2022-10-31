@@ -1,12 +1,10 @@
 import { createContext, useReducer } from 'react';
 import axios from 'axios';
-import { useFetch } from '../hooks/useFetch';
 
 export const EmotionsContext = createContext();
 
-const intialState = {
+const initialState = {
   emotions: [],
-  selectedEmotions: null,
   loading: false,
   error: null,
 };
@@ -25,7 +23,7 @@ const emotionsReducer = (state, action) => {
 };
 
 export function EmotionsProvider({ children }) {
-  const [state, dispatch] = useReducer(emotionsReducer, intialState);
+  const [state, dispatch] = useReducer(emotionsReducer, initialState);
   const url = 'http://localhost:3000/emotions';
 
   const loadEmotions = async () => {

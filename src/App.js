@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { EmotionsProvider } from './context/emotionsContext';
+import GlobalState from './context/globalState';
 
 import './App.css';
 import Navbar from './components/Navbar';
@@ -10,7 +10,7 @@ import Inspector from './pages/Inspector';
 function App() {
   return (
     <BrowserRouter>
-      <EmotionsProvider>
+      <GlobalState>
         <div className='App'>
           <Navbar />
           <Routes>
@@ -19,7 +19,7 @@ function App() {
             <Route path='/inspector' element={<Inspector />} />
           </Routes>
         </div>
-      </EmotionsProvider>
+      </GlobalState>
     </BrowserRouter>
   );
 }

@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
 import EmotionForm from '../components/EmotionForm';
 import Modal from '../components/Modal';
-import { useEmotions } from '../hooks/useEmotions';
+import { useCategories } from '../hooks/useCategories';
 import { useFetch } from '../hooks/useFetch';
 
 import './Editor.css';
 
 const Editor = () => {
   const [showModal, setShowModal] = useState(false);
-  const { data: categories } = useFetch('http://localhost:3000/categories');
+  const { categories, loadCategories } = useCategories();
+  // const { data: categories } = useFetch('http://localhost:3000/categories');
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
   return (
     <div className='editor full-vh'>
