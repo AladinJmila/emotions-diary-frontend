@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
 import { useUI } from '../hooks/useUI';
 import { useCategories } from '../hooks/useCategories';
-import EmotionForm from '../components/EmotionForm';
+import EmotionsForm from '../components/EmotionsForm';
 import Modal from '../components/Modal';
 
 function Category() {
@@ -23,7 +23,7 @@ function Category() {
       {emotions && emotions.map(em => <p key={em.id}>{em.name}</p>)}
       {showModal && (
         <Modal>
-          <EmotionForm setShowModal={setShowModal} categories={categories} />
+          <EmotionsForm setShowModal={setShowModal} categories={categories} />
         </Modal>
       )}
       <div className='bottom'>

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCategories } from '../hooks/useCategories';
 import { useUI } from '../hooks/useUI';
-import EmotionForm from '../components/EmotionForm';
+import EmotionsForm from '../components/EmotionsForm';
 import Modal from '../components/Modal';
 
 import './Categories.css';
@@ -26,7 +26,7 @@ const Editor = () => {
         ))}
       {showModal && (
         <Modal>
-          <EmotionForm setShowModal={setShowModal} categories={categories} />
+          <EmotionsForm setShowModal={setShowModal} categories={categories} />
         </Modal>
       )}
       <div className='bottom'>

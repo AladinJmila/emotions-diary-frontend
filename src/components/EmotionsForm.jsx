@@ -7,6 +7,7 @@ const EmotionForm = ({ setShowModal, categories }) => {
   const [categoryId, setCategoryId] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [posNeg, setPosNeg] = useState(5);
   const { addEmotion } = useEmotions();
   useEffect(() => {}, []);
 
@@ -14,7 +15,7 @@ const EmotionForm = ({ setShowModal, categories }) => {
     e.preventDefault();
 
     // addEmotion({ id: randomId(), categoryId, name, description });
-    console.log({ id: randomId(), categoryId, name, description });
+    console.log({ id: randomId(), categoryId, name, description, posNeg });
     setName('');
     setDescription('');
     setShowModal(false);
@@ -46,11 +47,19 @@ const EmotionForm = ({ setShowModal, categories }) => {
       <textarea
         id='description'
         cols='30'
-        rows='10'
+        rows='8'
         value={description}
         onChange={e => setDescription(e.target.value)}
       ></textarea>
-
+      <label htmlFor='pos-neg-scale'>Positivity Scale</label>
+      <input
+        type='range'
+        id='pos-neg-scale'
+        min='1'
+        max='10'
+        value={posNeg}
+        onChange={e => setPosNeg(e.target.value)}
+      />
       <div className='bottom'>
         <button>Submit</button>
       </div>

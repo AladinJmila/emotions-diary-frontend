@@ -19,3 +19,33 @@
   color: white;
   cursor: pointer;
 }
+
+#pos-neg-scale {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  outline: none;
+  height: 25px;
+  background-image: linear-gradient(to right, #000, #fff) !important;
+  border: 1px solid #fff;
+  padding: 2px;
+}
+
+#pos-neg-scale::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 23px;
+  height: 34px;
+  background-color: var(--color1);
+  border: 5px solid rgb(235, 235, 220);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#pos-neg-scale::-moz-range-thumb {
+  width: 23px;
+  height: 34px;
+  background-color: var(--royal-red);
+  border-radius: 4px;
+  cursor: pointer;
+}
