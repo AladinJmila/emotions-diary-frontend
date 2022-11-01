@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useEmotions } from '../hooks/useEmotions';
 import { randomId } from '../utilities/helpers';
 import './Forms.css';
 
-const EmotionForm = ({ setShowModal, categories }) => {
+const EmotionsForm = ({ setShowModal, categories }) => {
   const [categoryId, setCategoryId] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [posNeg, setPosNeg] = useState(5);
   const { addEmotion } = useEmotions();
-  useEffect(() => {}, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -67,4 +66,4 @@ const EmotionForm = ({ setShowModal, categories }) => {
   );
 };
 
-export default EmotionForm;
+export default EmotionsForm;

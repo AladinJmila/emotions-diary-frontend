@@ -8,22 +8,22 @@
     {
       "id": "2",
       "name": "Anger",
-      "energy": "Negative"
+      "energy": "negative"
     },
     {
       "id": "3",
       "name": "Sadness",
-      "energy": "Negative"
+      "energy": "negative"
     },
     {
       "id": "4",
       "name": "Fear",
-      "energy": "Negative"
+      "energy": "negative"
     },
     {
       "id": "5",
       "name": "Disgust",
-      "energy": "Negative"
+      "energy": "negative"
     }
   ],
   "emotions": [
