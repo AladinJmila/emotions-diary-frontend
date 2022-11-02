@@ -5,22 +5,22 @@ import './Forms.css';
 
 const CategoriesForm = ({ setShowModal }) => {
   const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [posNeg, setPosNeg] = useState(5);
+  const [energy, setEnergy] = useState('positive');
   const { addCategory } = useCategories();
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    // addEmotion({ id: randomId(), categoryId, name, description });
-    console.log({ id: randomId(), name, description, posNeg });
+    // addCategory({ id: randomId(),  name, energy });
+    console.log({ id: randomId(), name, energy });
     setName('');
-    setDescription('');
     setShowModal(false);
   };
 
+  const isSelected = value => energy === value;
+
   return (
-    <form className='emotion-form' onSubmit={handleSubmit}>
+    <form className='category-form' onSubmit={handleSubmit}>
       <button className='close-btn' onClick={() => setShowModal(false)}>
         X
       </button>
@@ -33,11 +33,25 @@ const CategoriesForm = ({ setShowModal }) => {
       />
       <span>Energy</span>
       <div className='flex'>
-        <input type='radio' name='energy' id='positive' />
+        <input
+          type='radio'
+          name='energy'
+          id='positive'
+          value='positive'
+          checked={isSelected('positive')}
+          onChange={e => setEnergy(e.target.value)}
+        />
         <label htmlFor='positive'>Positive</label>
       </div>
       <div className='flex'>
-        <input type='radio' name='energy' id='negative' />
+        <input
+          type='radio'
+          name='energy'
+          id='negative'
+          value='negative'
+          checked={isSelected('negative')}
+          onChange={e => setEnergy(e.target.value)}
+        />
         <label htmlFor='negative'>Negative</label>
       </div>
 
