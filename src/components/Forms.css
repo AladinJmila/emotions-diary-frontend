@@ -1,4 +1,5 @@
-.emotion-form {
+.emotion-form,
+.category-form {
   height: calc(100vh - 140px);
   background-color: transparent;
   position: relative;
@@ -48,4 +49,8 @@
   background-color: var(--royal-red);
   border-radius: 4px;
   cursor: pointer;
+}
+
+.category-form input[type='text'] {
+  margin-bottom: 40px;
 }

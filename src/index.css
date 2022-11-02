@@ -44,7 +44,8 @@ code {
 label,
 input,
 select,
-textarea {
+textarea,
+form span {
   display: block;
   text-align: left;
   width: 100%;
@@ -53,7 +54,8 @@ textarea {
   font-size: 1.2em;
 }
 
-label {
+label,
+form span {
   padding: 0;
 }
 
@@ -76,4 +78,12 @@ button {
   left: 0;
   right: 0;
   padding: 20px;
+}
+
+.flex {
+  display: flex;
+}
+.flex input {
+  width: 20px;
+  margin-right: 30px;
 }
