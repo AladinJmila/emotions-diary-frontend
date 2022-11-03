@@ -117,5 +117,14 @@
       "name": "Revulsion",
       "description": "A mixture of disgust and loathing."
     }
+  ],
+  "emo-states": [
+    {
+      "categoryId": "2",
+      "emotionId": "A3",
+      "trigger": "I had to do this stuff, but I didn't really feel like it. As I pushed through my emotions started to stir...",
+      "intensity": "4",
+      "id": 1
+    }
   ]
 }

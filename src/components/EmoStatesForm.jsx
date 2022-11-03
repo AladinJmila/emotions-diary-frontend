@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useCategories } from '../hooks/useCategories';
 import { useEmotions } from '../hooks/useEmotions';
+import { useEmoStates } from '../hooks/useEmoStates';
 
 function EmoStatesForm({ setShowModal }) {
   const { categories, loadCategories } = useCategories();
   const { emotions, loadEmotions } = useEmotions();
+  const { addEmoState } = useEmoStates();
   const [filteredEmotions, setFilteredEmotions] = useState(emotions);
   const [categoryId, setCategoryId] = useState(null);
   const [emotionId, setEmotionId] = useState(null);
@@ -27,6 +29,7 @@ function EmoStatesForm({ setShowModal }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    addEmoState({ categoryId, emotionId, trigger, intensity });
     console.log({ categoryId, emotionId, trigger, intensity });
   };
 
