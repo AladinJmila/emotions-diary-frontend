@@ -1,7 +1,11 @@
-import React from 'react';
+import EmoStatesForm from '../components/EmoStatesForm';
+import Modal from '../components/Modal';
+import { useUI } from '../hooks/useUI';
 import './Home.css';
 
 const Home = () => {
+  const { showModal, setShowModal } = useUI();
+
   return (
     <div className='home full-vh'>
       <div className='atlas-emotions'>
@@ -17,7 +21,16 @@ const Home = () => {
         <a href='/inspector'>
           <h2>Inspect</h2>
         </a>
+        <button
+          id='add-emo-state-btn'
+          onClick={() => setShowModal(true)}
+        ></button>
       </div>
+      {showModal && (
+        <Modal>
+          <EmoStatesForm setShowModal={setShowModal} />
+        </Modal>
+      )}
     </div>
   );
 };

@@ -1,11 +1,13 @@
 .emotion-form,
-.category-form {
+.category-form,
+.emo-state-form {
   height: calc(100vh - 140px);
   background-color: transparent;
   position: relative;
 }
 
-.emotion-form .bottom {
+.emotion-form .bottom,
+.emo-state-form .bottom {
   padding: 0;
 }
 
@@ -21,33 +23,34 @@
   cursor: pointer;
 }
 
-#pos-neg-scale {
+#pos-neg-scale,
+#intensity {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   outline: none;
   height: 25px;
   background-image: linear-gradient(to right, #000, #fff) !important;
-  border: 1px solid #fff;
-  padding: 2px;
+  border: 2px solid var(--color1);
+  padding: 0;
 }
 
-#pos-neg-scale::-webkit-slider-thumb {
+#pos-neg-scale::-webkit-slider-thumb,
+#intensity::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 23px;
-  height: 34px;
+  height: 23px;
   background-color: var(--color1);
-  border: 5px solid rgb(235, 235, 220);
-  border-radius: 4px;
   cursor: pointer;
+  position: relative;
 }
 
-#pos-neg-scale::-moz-range-thumb {
+#pos-neg-scale::-moz-range-thumb,
+#intensity::-moz-range-thumb {
   width: 23px;
-  height: 34px;
-  background-color: var(--royal-red);
-  border-radius: 4px;
+  height: 23px;
+  background-color: var(--color1);
   cursor: pointer;
 }
 
