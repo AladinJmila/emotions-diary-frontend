@@ -12,7 +12,10 @@ function EmoStatesList() {
 
   return (
     <div className='emo-states-container'>
-      <ul>{emoStates && emoStates.map(emos => <EmoState emos={emos} />)}</ul>
+      <ul>
+        {emoStates &&
+          emoStates.map(emos => <EmoState key={emos.id} emos={emos} />)}
+      </ul>
     </div>
   );
 }

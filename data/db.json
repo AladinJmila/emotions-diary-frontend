@@ -31,91 +31,106 @@
       "id": "E1",
       "categoryId": "1",
       "name": "Ecstacy",
-      "description": "Rapturous delight. A state of very great happiness, nearly overwhelming."
+      "description": "Rapturous delight. A state of very great happiness, nearly overwhelming.",
+      "posNeg": 10
     },
     {
       "id": "E2",
       "categoryId": "1",
       "name": "Excitement",
-      "description": "A powerful enthusiasm."
+      "descriptin": "A powerful enthusiasm.",
+      "posNeg": 10
     },
     {
       "id": "E3",
       "categoryId": "1",
       "name": "Wonder",
-      "description": "An experience of something that is vey surprising, beautiful, amazing or hard to believe."
+      "description": "An experience of something that is vey surprising, beautiful, amazing or hard to believe.",
+      "posNeg": 10
     },
     {
       "id": "A1",
       "categoryId": "2",
       "name": "Fury",
-      "description": "Uncontrolled and often violent anger."
+      "description": "Uncontrolled and often violent anger.",
+      "posNeg": 2
     },
     {
       "id": "A2",
       "categoryId": "2",
       "name": "Vengefulness",
-      "description": "Desire to retaliate after one is hurt."
+      "description": "Desire to retaliate after one is hurt.",
+      "posNeg": 1
     },
     {
       "id": "A3",
       "categoryId": "2",
       "name": "Bitterness",
-      "description": "Anger after unfair treatment."
+      "description": "Anger after unfair treatment.",
+      "posNeg": 1
     },
     {
       "id": "S1",
       "categoryId": "3",
       "name": "Anguish",
-      "description": "Intense sadness of suffering."
+      "description": "Intense sadness of suffering.",
+      "posNeg": 1
     },
     {
       "id": "S2",
       "categoryId": "3",
       "name": "Sorrow",
-      "description": "A feeling of distress and sadness, often caused by a loss."
+      "description": "A feeling of distress and sadness, often caused by a loss.",
+      "posNeg": 1
     },
     {
       "id": "S3",
       "categoryId": "3",
       "name": "Grief",
-      "description": "Sadness over a deep loss."
+      "description": "Sadness over a deep loss.",
+      "posNeg": 1
     },
     {
       "id": "F1",
       "categoryId": "4",
       "name": "Terror",
-      "description": "Intense, overpowering fear."
+      "description": "Intense, overpowering fear.",
+      "posNeg": 1
     },
     {
       "id": "F2",
       "categoryId": "4",
       "name": "Horror",
-      "description": "A mixture of fear, disgust, and shock."
+      "description": "A mixture of fear, disgust, and shock.",
+      "posNeg": 1
     },
     {
       "id": "F3",
       "categoryId": "4",
       "name": "Panic",
-      "description": "Sudden uncontrollable fear."
+      "description": "Sudden uncontrollable fear.",
+      "posNeg": 2
     },
     {
       "id": "D1",
       "categoryId": "5",
       "name": "Loathing",
-      "description": "Intense disgust focused on a person. Intense disugust focused on oneself is called self-loathing."
+      "description": "Intense disgust focused on a person. Intense disugust focused on oneself is called self-loathing.",
+      "posNeg": 1
     },
     {
       "id": "D2",
       "categoryId": "5",
       "name": "Abhorrence",
-      "description": "A mixture of intense disgust and hatred."
+      "description": "A mixture of intense disgust and hatred.",
+      "posNeg": 1
     },
     {
       "id": "D3",
       "categoryId": "5",
       "name": "Revulsion",
-      "description": "A mixture of disgust and loathing."
+      "description": "A mixture of disgust and loathing.",
+      "posNeg": 1
     }
   ],
   "emo-states": [
@@ -123,7 +138,8 @@
       "categoryId": "1",
       "emotion": {
         "id": "E2",
-        "name": "Excitement"
+        "name": "Excitement",
+        "posNeg": 10
       },
       "trigger": "As that thing happened it made me fill with positive energy tralala trala la la...",
       "intensity": "4",
@@ -133,11 +149,25 @@
       "categoryId": "2",
       "emotion": {
         "id": "A1",
-        "name": "Fury"
+        "name": "Fury",
+        "posNeg": 2
       },
       "trigger": "This preacher arrived today and was trying to sell me a story that I don't believe in, but because I was being nice I kept listening and that wasted my time. I new from the start that this is a waste of time, but I decided to be nice and there you go...",
       "intensity": "6",
       "id": 2
+    },
+    {
+      "id": "u6686fmd",
+      "categoryId": "3",
+      "emotion": {
+        "id": "S2",
+        "categoryId": "3",
+        "name": "Sorrow",
+        "description": "A feeling of distress and sadness, often caused by a loss.",
+        "posNeg": 1
+      },
+      "trigger": "I am a man of constant sorrow, I've seen trouble all my day.\nI bid farewell to old Kentucky, the place where I was born and raised.",
+      "intensity": "9"
     }
   ]
 }

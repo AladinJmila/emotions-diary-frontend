@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useCategories } from '../hooks/useCategories';
 import { useEmotions } from '../hooks/useEmotions';
 import { useEmoStates } from '../hooks/useEmoStates';
+import { randomId } from '../utilities/helpers';
 
 function EmoStatesForm({ setShowModal }) {
   const { categories, loadCategories } = useCategories();
@@ -29,11 +30,9 @@ function EmoStatesForm({ setShowModal }) {
 
   const handleSubmit = e => {
     const body = {
+      id: randomId(),
       categoryId,
-      emotion: {
-        id: emotionId,
-        name: filteredEmotions.filter(em => em.id === emotionId)[0].name,
-      },
+      emotion: filteredEmotions.filter(em => em.id === emotionId)[0],
       trigger,
       intensity,
     };
