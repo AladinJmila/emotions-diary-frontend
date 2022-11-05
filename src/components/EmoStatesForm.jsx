@@ -28,9 +28,19 @@ function EmoStatesForm({ setShowModal }) {
   }, []);
 
   const handleSubmit = e => {
+    const body = {
+      categoryId,
+      emotion: {
+        id: emotionId,
+        name: filteredEmotions.filter(em => em.id === emotionId)[0].name,
+      },
+      trigger,
+      intensity,
+    };
+
     e.preventDefault();
-    addEmoState({ categoryId, emotionId, trigger, intensity });
-    console.log({ categoryId, emotionId, trigger, intensity });
+    addEmoState(body);
+    console.log(body);
   };
 
   return (

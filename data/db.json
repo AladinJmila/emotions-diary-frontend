@@ -120,11 +120,24 @@
   ],
   "emo-states": [
     {
-      "categoryId": "2",
-      "emotionId": "A3",
-      "trigger": "I had to do this stuff, but I didn't really feel like it. As I pushed through my emotions started to stir...",
+      "categoryId": "1",
+      "emotion": {
+        "id": "E2",
+        "name": "Excitement"
+      },
+      "trigger": "As that thing happened it made me fill with positive energy tralala trala la la...",
       "intensity": "4",
       "id": 1
+    },
+    {
+      "categoryId": "2",
+      "emotion": {
+        "id": "A1",
+        "name": "Fury"
+      },
+      "trigger": "This preacher arrived today and was trying to sell me a story that I don't believe in, but because I was being nice I kept listening and that wasted my time. I new from the start that this is a waste of time, but I decided to be nice and there you go...",
+      "intensity": "6",
+      "id": 2
     }
   ]
 }
