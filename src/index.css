@@ -87,3 +87,11 @@ button {
   width: 20px;
   margin-right: 30px;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: initial;
+}

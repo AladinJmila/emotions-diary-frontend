@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useEmoStates } from '../hooks/useEmoStates';
+import EmoState from './EmoState';
+import './EmoStatesList.css';
 
 function EmoStatesList() {
   const { emoStates, loadEmoStates } = useEmoStates();
@@ -10,10 +12,7 @@ function EmoStatesList() {
 
   return (
     <div className='emo-states-container'>
-      <ul>
-        {emoStates &&
-          emoStates.map(emos => <li key={emos.id}>{emos.emotion.name}</li>)}
-      </ul>
+      <ul>{emoStates && emoStates.map(emos => <EmoState emos={emos} />)}</ul>
     </div>
   );
 }
