@@ -1,0 +1,11 @@
+.emo-states-container ul {
+  list-style-type: none;
+  overflow: auto;
+  max-height: 75vh;
+}
+
+.emo-states-container button {
+  border: 3px solid var(--color1);
+  border-radius: 10px;
+  margin: 10px auto;
+}
