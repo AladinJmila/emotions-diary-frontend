@@ -1,15 +1,26 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useState, useRef } from 'react';
+import { shadesOfGrey } from '../utilities/helpers';
 
 function EmoState({ emos }) {
   const [show, setShow] = useState(false);
-  const grey = 25.5 * emos.emotion.posNeg;
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView();
+  }, [show]);
+
   const styles = {
-    backgroundColor: `rgb(${grey}, ${grey}, ${grey})`,
-    color: emos.emotion.posNeg < 5 ? '#fff' : '#000',
+    backgroundColor: shadesOfGrey[emos.emotion.posNeg - 1],
+    color: shadesOfGrey
+      .slice(0, 5)
+      .includes(shadesOfGrey[emos.emotion.posNeg - 1])
+      ? 'white'
+      : 'black',
   };
 
   return (
-    <li>
+    <li ref={ref}>
       <button style={styles} onClick={() => setShow(show ? false : true)}>
         {emos.emotion.name}
       </button>

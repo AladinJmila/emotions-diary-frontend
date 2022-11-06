@@ -135,30 +135,35 @@
   ],
   "emo-states": [
     {
-      "id": "u5555fmd",
-      "categoryId": "1",
+      "id": "m95srw76",
       "emotion": {
         "id": "E2",
+        "categoryId": "1",
         "name": "Excitement",
+        "descriptin": "A powerful enthusiasm.",
         "posNeg": 10
       },
       "trigger": "As that thing happened it made me fill with positive energy tralala trala la la...",
-      "intensity": "4"
+      "intensity": "10",
+      "date": "2022-11-06T15:50:17.608Z",
+      "color": "#FAFAFA"
     },
     {
-      "id": "u6336fmd",
-      "categoryId": "2",
+      "id": "96fk4fhy",
       "emotion": {
         "id": "A1",
+        "categoryId": "2",
         "name": "Fury",
+        "description": "Uncontrolled and often violent anger.",
         "posNeg": 2
       },
       "trigger": "This preacher arrived today and was trying to sell me a story that I don't believe in, but because I was being nice I kept listening and that wasted my time. I new from the start that this is a waste of time, but I decided to be nice and there you go...",
-      "intensity": "6"
+      "intensity": "6",
+      "date": "2022-11-06T15:51:16.428Z",
+      "color": "#323232"
     },
     {
-      "id": "u6686fmd",
-      "categoryId": "3",
+      "id": "uiq31hy2",
       "emotion": {
         "id": "S2",
         "categoryId": "3",
@@ -166,8 +171,52 @@
         "description": "A feeling of distress and sadness, often caused by a loss.",
         "posNeg": 1
       },
-      "trigger": "I am a man of constant sorrow, I've seen trouble all my day.\nI bid farewell to old Kentucky, the place where I was born and raised.",
-      "intensity": "9"
+      "trigger": "I am a man of constant sorrow, I've seen trouble all my day. I bid farewell to old Kentucky, the place where I was born and raised.",
+      "intensity": "9",
+      "date": "2022-11-06T15:51:55.084Z",
+      "color": "#191919"
+    },
+    {
+      "id": "59vbhine",
+      "emotion": {
+        "id": "D3",
+        "categoryId": "5",
+        "name": "Revulsion",
+        "description": "A mixture of disgust and loathing.",
+        "posNeg": 1
+      },
+      "trigger": "Dudini made fuej foodz and was smaking it in the plate as she was serving it. I don't know if I will ever forgive her. May god grow her boob!",
+      "intensity": "4",
+      "date": "2022-11-06T15:52:40.565Z",
+      "color": "#191919"
+    },
+    {
+      "id": "4cc1p1l0",
+      "emotion": {
+        "id": "F3",
+        "categoryId": "4",
+        "name": "Panic",
+        "description": "Sudden uncontrollable fear.",
+        "posNeg": 2
+      },
+      "trigger": "I had to finish this project asap, but then the computer did not want to turn on. Isuse i boze, what am I supposed to do",
+      "intensity": "10",
+      "date": "2022-11-06T15:53:50.886Z",
+      "color": "#323232"
+    },
+    {
+      "id": "7dgfefew",
+      "emotion": {
+        "id": "E3",
+        "categoryId": "1",
+        "name": "Wonder",
+        "description": "An experience of something that is vey surprising, beautiful, amazing or hard to believe.",
+        "posNeg": 10
+      },
+      "trigger": "Dudini was wonderful today, she kissed me more than a hundred times and I was budalan",
+      "intensity": "4",
+      "date": "2022-11-06T16:27:37.409Z",
+      "color": "#FAFAFA"
     }
   ]
 }

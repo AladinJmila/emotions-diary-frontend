@@ -1,5 +1,7 @@
 .emo-states-container ul {
   list-style-type: none;
+  overflow: auto;
+  max-height: 75vh;
 }
 
 .emo-states-container button {

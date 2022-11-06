@@ -3,14 +3,13 @@ import { useEffect } from 'react';
 import { useCategories } from '../hooks/useCategories';
 import { useEmotions } from '../hooks/useEmotions';
 import { useEmoStates } from '../hooks/useEmoStates';
-import { randomId } from '../utilities/helpers';
+import { randomId, shadesOfGrey } from '../utilities/helpers';
 
 function EmoStatesForm({ setShowModal }) {
   const { categories, loadCategories } = useCategories();
   const { emotions, loadEmotions } = useEmotions();
   const { addEmoState } = useEmoStates();
   const [filteredEmotions, setFilteredEmotions] = useState(emotions);
-  const [categoryId, setCategoryId] = useState(null);
   const [emotionId, setEmotionId] = useState(null);
   const [trigger, setTrigger] = useState('');
   const [intensity, setIntensity] = useState(1);
@@ -29,17 +28,20 @@ function EmoStatesForm({ setShowModal }) {
   }, []);
 
   const handleSubmit = e => {
+    const emotion = filteredEmotions.filter(em => em.id === emotionId)[0];
     const body = {
       id: randomId(),
-      categoryId,
-      emotion: filteredEmotions.filter(em => em.id === emotionId)[0],
+      emotion,
       trigger,
       intensity,
+      date: new Date(),
+      color: shadesOfGrey[emotion.posNeg - 1],
     };
 
     e.preventDefault();
     addEmoState(body);
-    console.log(body);
+
+    setShowModal(false);
   };
 
   return (
@@ -51,7 +53,6 @@ function EmoStatesForm({ setShowModal }) {
       <select
         id='categories'
         onChange={e => {
-          setCategoryId(e.target.value);
           filterEmotions(e.target.value);
         }}
       >
@@ -81,7 +82,7 @@ function EmoStatesForm({ setShowModal }) {
         value={trigger}
         onChange={e => setTrigger(e.target.value)}
       ></textarea>
-      <label htmlFor='intensity'>Intensity</label>
+      <label htmlFor='intensity'>Intensity: {intensity}</label>
       <input
         type='range'
         id='intensity'

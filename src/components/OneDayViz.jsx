@@ -1,87 +1,32 @@
 import * as d3 from 'd3';
 import { useEffect } from 'react';
 import { useEmoStates } from '../hooks/useEmoStates';
+import { shadesOfGrey } from '../utilities/helpers';
 
 function OneDayViz() {
   const { emoStates, loadEmoStates } = useEmoStates();
-
-  const shadesOfGrey = [
-    '#191919',
-    '#323232',
-    '#4B4B4B',
-    '#646464',
-    '#7D7D7D',
-    '#969696',
-    '#AFAFAF',
-    '#C8C8C8',
-    '#E1E1E1',
-    '#FAFAFA',
-  ];
 
   useEffect(() => {
     !emoStates.length && loadEmoStates();
     genGraph();
   }, []);
 
-  // console.log(emoStates);
+  const children = emoStates.map(emos => ({
+    name: emos.emotion.name,
+    value: emos.intensity * 1000,
+    color: emos.color,
+  }));
+
+  const verticalSpacing = 1;
 
   const genGraph = () => {
-    const color = d3
-      .scaleLinear()
-      .domain([0, 5])
-      .range(['hsl(152,80%,80%)', 'hsl(228,30%,40%)'])
-      .interpolate(d3.interpolateHcl);
-
     const data = {
-      // name: 'flare',
-      // children: [
-      //   {
-      // name: 'analytics',
-      // children: [
-      //   {
       name: 'cluster',
-      children: [
-        { name: 'Abhorrence', value: 10000, color: shadesOfGrey[0] },
-        { name: 'Loathing', value: 2000, color: shadesOfGrey[5] },
-        { name: 'Sorrow', value: 5000, color: shadesOfGrey[3] },
-        { name: 'Ecstacy', value: 9000, color: shadesOfGrey[9] },
-        { name: 'Wonder', value: 4000, color: shadesOfGrey[6] },
-        { name: 'Grief', value: 3000, color: shadesOfGrey[2] },
-        { name: 'Excitement', value: 7000, color: shadesOfGrey[8] },
-        { name: 'loom', value: 5000, color: shadesOfGrey[5] },
-        { name: 'doom', value: 8000, color: shadesOfGrey[7] },
-        { name: 'Sorrow', value: 7000, color: shadesOfGrey[3] },
-        { name: 'Loathing', value: 1000, color: shadesOfGrey[5] },
-        { name: 'Wonder', value: 3000, color: shadesOfGrey[6] },
-        { name: 'Grief', value: 3000, color: shadesOfGrey[2] },
-        { name: 'Ecstacy', value: 5000, color: shadesOfGrey[9] },
-        { name: 'Abhorrence', value: 8000, color: shadesOfGrey[0] },
-        { name: 'loom', value: 10000, color: shadesOfGrey[5] },
-        { name: 'Excitement', value: 2000, color: shadesOfGrey[8] },
-        { name: 'goom', value: 7000, color: shadesOfGrey[5] },
-        //   ],
-        // },
-        // {
-        //   name: 'graph',
-        //   children: [
-        //     { name: 'BetweennessCentrality', value: 3534 },
-        //     { name: 'LinkDistance', value: 5731 },
-        //     { name: 'MaxFlowMinCut', value: 7840 },
-        //     { name: 'ShortestPaths', value: 5914 },
-        //     { name: 'SpanningTree', value: 3416 },
-        //   ],
-        // },
-        // {
-        //   name: 'optimization',
-        //   children: [{ name: 'AspectRatioBanker', value: 7074 }],
-        // },
-      ],
-      //   },
-      // ],
+      children,
     };
 
     const width = 932;
-    const height = 1.8 * width;
+    const height = 1.6 * width;
 
     const pack = data =>
       d3.pack().size([width, height]).padding(3)(
@@ -100,7 +45,7 @@ function OneDayViz() {
     const svg = d3
       .select('#svg')
       .append('svg')
-      .attr('viewBox', `-${width / 2} -${height / 2} ${width} ${height}`)
+      .attr('viewBox', `-${width / 2} -${height / 1.9} ${width} ${height}`)
       // .attr(
       //   'viewBox',
       //   `-${width / 2.55} -${height / 2.1} ${width * 0.85} ${height}`
@@ -120,7 +65,7 @@ function OneDayViz() {
       .attr('pointer-events', d => (!d.children ? 'none' : null))
       // .attr('stroke', 'var(--color1)')
       .attr('stroke', 'var(--bw-shade1)')
-      .attr('stroke-width', 25)
+      .attr('stroke-width', 40)
       .on('mouseover', function () {
         d3.select(this).attr('stroke', '#000');
       })
@@ -181,19 +126,26 @@ function OneDayViz() {
 
       label.attr(
         'transform',
-        d => `translate(${(d.x - v[0]) * k * 1},${(d.y - v[1]) * k * 1.8})`
+        d =>
+          `translate(${(d.x - v[0]) * k * 1},${
+            (d.y - v[1]) * k * verticalSpacing
+          })`
       );
       node.attr(
         'transform',
-        d => `translate(${(d.x - v[0]) * k * 1},${(d.y - v[1]) * k * 1.8})`
+        d =>
+          `translate(${(d.x - v[0]) * k * 1},${
+            (d.y - v[1]) * k * verticalSpacing
+          })`
       );
       node.attr('r', d => d.r * k * 1);
 
       node2.attr(
         'transform',
-        d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k * 1.8})`
+        d =>
+          `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k * verticalSpacing})`
       );
-      node2.attr('r', d => d.r * k * 0.89);
+      node2.attr('r', d => d.r * k * 0.9);
     }
 
     function zoom(event, d) {
