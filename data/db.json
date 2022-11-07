@@ -185,7 +185,7 @@
         "description": "A mixture of disgust and loathing.",
         "posNeg": 1
       },
-      "trigger": "Dudini made fuej foodz and was smaking it in the plate as she was serving it. I don't know if I will ever forgive her. May god grow her boob!",
+      "trigger": "Dudini made fuej foodz and was smaking it in the plate as she was serving it. I don't know if I will ever forgive her.",
       "intensity": "4",
       "date": "2022-11-06T15:52:40.565Z",
       "color": "#191919"
@@ -217,6 +217,34 @@
       "intensity": "4",
       "date": "2022-11-06T16:27:37.409Z",
       "color": "#FAFAFA"
+    },
+    {
+      "id": "h7ljydtm",
+      "emotion": {
+        "id": "E1",
+        "categoryId": "1",
+        "name": "Ecstacy",
+        "description": "Rapturous delight. A state of very great happiness, nearly overwhelming.",
+        "posNeg": 10
+      },
+      "trigger": "Today I am writing this to test the filtering feature per day",
+      "intensity": "9",
+      "date": "2022-11-07T08:05:08.028Z",
+      "color": "#FAFAFA"
+    },
+    {
+      "id": "mcb9iubz",
+      "emotion": {
+        "id": "S1",
+        "categoryId": "3",
+        "name": "Anguish",
+        "description": "Intense sadness of suffering.",
+        "posNeg": 1
+      },
+      "trigger": "Angus and Julia music, also Djanga is playing now by endspiel. However if I see how it feels, I'm rather pressured with time",
+      "intensity": "4",
+      "date": "2022-11-07T08:06:45.064Z",
+      "color": "#191919"
     }
   ]
 }

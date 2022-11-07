@@ -19,10 +19,15 @@ function EmoState({ emos }) {
       : 'black',
   };
 
+  const date = new Date(emos.date);
+
   return (
     <li ref={ref}>
       <button style={styles} onClick={() => setShow(show ? false : true)}>
         {emos.emotion.name}
+        <span>
+          {date.getHours()} : {date.getMinutes()}
+        </span>
       </button>
       {show && <p>{emos.trigger}</p>}
     </li>

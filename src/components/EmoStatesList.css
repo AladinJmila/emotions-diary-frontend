@@ -8,4 +8,18 @@
   border: 3px solid var(--color1);
   border-radius: 10px;
   margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emo-states-container button span {
+  font-size: 0.8em;
+  pointer-events: none;
+}
+
+.emo-states-container .date {
+  display: block;
+  font-size: 1.1em;
+  transform: translateY(-10px);
 }

@@ -50,7 +50,7 @@ const EmotionsForm = ({ setShowModal, categories }) => {
         value={description}
         onChange={e => setDescription(e.target.value)}
       ></textarea>
-      <label htmlFor='pos-neg-scale'>Positivity</label>
+      <label htmlFor='pos-neg-scale'>Positivity: {posNeg}</label>
       <input
         type='range'
         id='pos-neg-scale'
