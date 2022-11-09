@@ -245,6 +245,62 @@
       "intensity": "4",
       "date": "2022-11-07T08:06:45.064Z",
       "color": "#191919"
+    },
+    {
+      "id": "w1cxc4wp",
+      "emotion": {
+        "id": "F3",
+        "categoryId": "4",
+        "name": "Panic",
+        "description": "Sudden uncontrollable fear.",
+        "posNeg": 2
+      },
+      "trigger": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis",
+      "intensity": "8",
+      "date": "2022-11-08T08:14:49.222Z",
+      "color": "#323232"
+    },
+    {
+      "id": "w6onu4i0",
+      "emotion": {
+        "id": "E2",
+        "categoryId": "1",
+        "name": "Excitement",
+        "descriptin": "A powerful enthusiasm.",
+        "posNeg": 10
+      },
+      "trigger": "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupi",
+      "intensity": "5",
+      "date": "2022-11-08T08:15:05.675Z",
+      "color": "#FAFAFA"
+    },
+    {
+      "id": "11zbpvm0",
+      "emotion": {
+        "id": "D2",
+        "categoryId": "5",
+        "name": "Abhorrence",
+        "description": "A mixture of intense disgust and hatred.",
+        "posNeg": 1
+      },
+      "trigger": " quis nostrud exercitation ullamco laboris nisi ut aliquip ex",
+      "intensity": "3",
+      "date": "2022-11-08T08:15:23.422Z",
+      "color": "#191919"
+    },
+    {
+      "id": "aqa1kk67",
+      "emotion": {
+        "id": "A2",
+        "categoryId": "2",
+        "name": "Vengefulness",
+        "description": "Desire to retaliate after one is hurt.",
+        "posNeg": 1
+      },
+      "trigger": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor",
+      "intensity": "8",
+      "date": "2022-11-09T07:19:18.986Z",
+      "color": "#191919"
     }
   ]
 }

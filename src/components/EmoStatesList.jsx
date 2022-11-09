@@ -1,49 +1,81 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useEmoStates } from '../hooks/useEmoStates';
 import EmoState from './EmoState';
 import './EmoStatesList.css';
 
 function EmoStatesList() {
   const { emoStates, loadEmoStates } = useEmoStates();
+  const [paginated, setPaginated] = useState(null);
+  const [currentPage, setCurrentPage] = useState([]);
+  const [pageIndex, setPageIndex] = useState(0);
 
   useEffect(() => {
     !emoStates.length && loadEmoStates();
-    emoStates.length && paginate(emoStates);
-  }, [emoStates]);
-
-  const paginate = emoStates => {
-    const today = new Date();
-    let currentDate = today;
-    let dayCount = 0;
-    const paginated = [];
-
-    for (let i = emoStates.length - 1; i >= 0; i--) {
-      if (new Date(emoStates[i].date).getDate() === currentDate.getDate()) {
-        if (!paginated[dayCount]) {
-          paginated[dayCount] = [emoStates[i]];
-        } else {
-          paginated[dayCount] = [...paginated[dayCount], emoStates[i]];
-        }
-      } else {
-        dayCount++;
-        currentDate.setDate(today.getDate() - 1);
-      }
-      console.log(currentDate);
+    if (emoStates.length) {
+      setPaginated(paginate(emoStates));
+      setCurrentPage(paginate(emoStates)[pageIndex]);
     }
+  }, [emoStates, pageIndex]);
 
-    console.log('paginated');
-    console.log(paginated);
-  };
+  function paginate() {
+    const paginated = [];
+    let dayIndex = 0;
+
+    for (let i = emoStates.length - 1; i >= 1; i--) {
+      const current = emoStates[i];
+      const prev = emoStates[i - 1];
+      const currentDate = new Date(current.date);
+      const prevDate = new Date(prev.date);
+
+      if (!paginated[dayIndex]) paginated[dayIndex] = [];
+      paginated[dayIndex].push(emoStates[i]);
+
+      if (
+        currentDate.getDate() === prevDate.getDate() &&
+        currentDate.getMonth() === prevDate.getMonth() &&
+        currentDate.getFullYear() === prevDate.getFullYear()
+      ) {
+        continue;
+      } else {
+        dayIndex++;
+      }
+    }
+    return paginated;
+  }
 
   return (
     <div className='emo-states-container'>
-      <span className='date'>
-        {new Date(emoStates[0]?.date).toDateString()}
-      </span>
-      <ul>
-        {emoStates &&
-          emoStates.map(emos => <EmoState key={emos.id} emos={emos} />)}
-      </ul>
+      {paginated && (
+        <>
+          <div
+            className='buttons'
+            style={{ justifyContent: 'space-between', marginBottom: 30 }}
+          >
+            <p
+              onClick={() => {
+                if (pageIndex < paginated.length - 1)
+                  setPageIndex(pageIndex + 1);
+              }}
+            >
+              prev
+            </p>
+            <p
+              onClick={() => {
+                if (pageIndex > 0) setPageIndex(pageIndex - 1);
+              }}
+            >
+              next
+            </p>
+          </div>
+          <span className='date'>
+            {currentPage && new Date(currentPage[0]?.date).toDateString()}
+          </span>
+          <ul>
+            {currentPage &&
+              currentPage.map(emos => <EmoState key={emos.id} emos={emos} />)}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
