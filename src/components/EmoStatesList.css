@@ -17,9 +17,3 @@
   font-size: 0.8em;
   pointer-events: none;
 }
-
-.emo-states-container .date {
-  display: block;
-  font-size: 1.1em;
-  transform: translateY(-10px);
-}

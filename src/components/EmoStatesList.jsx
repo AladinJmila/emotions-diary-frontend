@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useEmoStates } from '../hooks/useEmoStates';
+import DaysNav from './DaysNav';
 import EmoState from './EmoState';
 import './EmoStatesList.css';
 
@@ -47,29 +48,12 @@ function EmoStatesList() {
     <div className='emo-states-container'>
       {paginated && (
         <>
-          <div
-            className='buttons'
-            style={{ justifyContent: 'space-between', marginBottom: 30 }}
-          >
-            <p
-              onClick={() => {
-                if (pageIndex < paginated.length - 1)
-                  setPageIndex(pageIndex + 1);
-              }}
-            >
-              prev
-            </p>
-            <p
-              onClick={() => {
-                if (pageIndex > 0) setPageIndex(pageIndex - 1);
-              }}
-            >
-              next
-            </p>
-          </div>
-          <span className='date'>
-            {currentPage && new Date(currentPage[0]?.date).toDateString()}
-          </span>
+          <DaysNav
+            paginated={paginated}
+            currentPage={currentPage}
+            pageIndex={pageIndex}
+            setPageIndex={setPageIndex}
+          />
           <ul>
             {currentPage &&
               currentPage.map(emos => <EmoState key={emos.id} emos={emos} />)}
