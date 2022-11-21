@@ -1,32 +1,29 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
 import './DaysNav.css';
 
-library.add(faChevronLeft, faChevronRight);
-
 function DaysNav({ paginated, currentPage, pageIndex, setPageIndex }) {
+  const hasPrevPage = pageIndex < paginated.length - 1;
+  const hasNextPage = pageIndex > 0;
+
   return (
     <div className='days-nav'>
       <button
+        style={{ visibility: hasPrevPage ? 'visible' : 'hidden' }}
         onClick={() => {
-          if (pageIndex < paginated.length - 1) setPageIndex(pageIndex + 1);
+          if (hasPrevPage) setPageIndex(pageIndex + 1);
         }}
       >
-        <FontAwesomeIcon icon='fa-solid fa-chevron-left' />
+        <i className='fa fa-chevron-left' />
       </button>
       <span className='date'>
         {currentPage && new Date(currentPage[0]?.date).toDateString()}
       </span>
       <button
+        style={{ visibility: hasNextPage ? 'visible' : 'hidden' }}
         onClick={() => {
-          if (pageIndex > 0) setPageIndex(pageIndex - 1);
+          if (hasNextPage) setPageIndex(pageIndex - 1);
         }}
       >
-        <FontAwesomeIcon icon='fa-solid fa-chevron-right' />
+        <i className='fa fa-chevron-right' />
       </button>
     </div>
   );

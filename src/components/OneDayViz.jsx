@@ -1,25 +1,23 @@
 import * as d3 from 'd3';
-import { useEffect } from 'react';
-import { useEmoStates } from '../hooks/useEmoStates';
+import { useRef, useEffect } from 'react';
 import { shadesOfGrey } from '../utilities/helpers';
+import DaysNav from './DaysNav';
 
-function OneDayViz() {
-  const { emoStates, loadEmoStates } = useEmoStates();
+function OneDayViz({ paginated, currentPage, pageIndex, setPageIndex }) {
+  const children = useRef(null);
 
   useEffect(() => {
-    !emoStates.length && loadEmoStates();
-    genGraph();
-  }, []);
-
-  const children = emoStates.map(emos => ({
-    name: emos.emotion.name,
-    value: emos.intensity * 1000,
-    color: emos.color,
-  }));
+    children.current = currentPage.map(emos => ({
+      name: emos.emotion.name,
+      value: emos.intensity * 1000,
+      color: emos.color,
+    }));
+    genGraph(children.current);
+  }, [currentPage, pageIndex, children]);
 
   const verticalSpacing = 1;
 
-  const genGraph = () => {
+  const genGraph = children => {
     const data = {
       name: 'cluster',
       children,
@@ -40,6 +38,7 @@ function OneDayViz() {
     let focus = root;
     let view;
 
+    d3.select('svg').remove();
     d3.select('svg').remove();
 
     const svg = d3
@@ -178,7 +177,7 @@ function OneDayViz() {
     return svg.node();
   };
 
-  return <div id='svg'></div>;
+  return <>{children && <div id='svg'></div>}</>;
 }
 
 export default OneDayViz;

@@ -301,6 +301,20 @@
       "intensity": "8",
       "date": "2022-11-09T07:19:18.986Z",
       "color": "#191919"
+    },
+    {
+      "id": "dgy18gd3",
+      "emotion": {
+        "id": "S1",
+        "categoryId": "3",
+        "name": "Anguish",
+        "description": "Intense sadness of suffering.",
+        "posNeg": 1
+      },
+      "trigger": "A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+      "intensity": "9",
+      "date": "2022-11-10T11:31:35.339Z",
+      "color": "#191919"
     }
   ]
 }
