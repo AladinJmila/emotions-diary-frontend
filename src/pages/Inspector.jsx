@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useEmoStates } from '../hooks/useEmoStates';
 import EmoStatesList from '../components/EmoStatesList';
 import OneDayViz from '../components/OneDayViz';
+import OneMonthViz from '../components/OneMonthViz';
 import DaysNav from '../components/DaysNav';
 import './Inspector.css';
 
@@ -12,18 +13,20 @@ const Inspector = () => {
   const [paginated, setPaginated] = useState(null);
   const [currentPage, setCurrentPage] = useState(null);
   const [pageIndex, setPageIndex] = useState(0);
+  const [monthPages, setMonthPages] = useState(null);
 
   useEffect(() => {
     !emoStates.length && loadEmoStates();
     if (emoStates.length) {
-      setPaginated(paginate(emoStates));
-      setCurrentPage(paginate(emoStates)[pageIndex]);
+      setPaginated(dayPaginate());
+      setCurrentPage(dayPaginate()[pageIndex]);
+      setMonthPages(monthPaginate());
     }
   }, [emoStates, pageIndex]);
 
-  function paginate() {
+  function dayPaginate() {
     const paginated = [];
-    let dayIndex = 0;
+    let index = 0;
 
     for (let i = emoStates.length - 1; i >= 1; i--) {
       const current = emoStates[i];
@@ -31,8 +34,8 @@ const Inspector = () => {
       const currentDate = new Date(current.date);
       const prevDate = new Date(prev.date);
 
-      if (!paginated[dayIndex]) paginated[dayIndex] = [];
-      paginated[dayIndex].push(emoStates[i]);
+      if (!paginated[index]) paginated[index] = [];
+      paginated[index].push(emoStates[i]);
 
       if (
         currentDate.getDate() === prevDate.getDate() &&
@@ -41,9 +44,37 @@ const Inspector = () => {
       ) {
         continue;
       } else {
-        dayIndex++;
+        index++;
       }
     }
+
+    return paginated;
+  }
+
+  function monthPaginate() {
+    const paginated = [];
+    let index = 0;
+    const daysPages = dayPaginate();
+
+    for (let i = daysPages.length - 1; i >= 1; i--) {
+      const current = daysPages[i][0];
+      const prev = daysPages[i - 1][0];
+      const currentDate = new Date(current.date);
+      const prevDate = new Date(prev.date);
+
+      if (!paginated[index]) paginated[index] = [];
+      paginated[index].push(daysPages[i]);
+
+      if (
+        currentDate.getMonth() === prevDate.getMonth() &&
+        currentDate.getFullYear() === prevDate.getFullYear()
+      ) {
+        continue;
+      } else {
+        index++;
+      }
+    }
+
     return paginated;
   }
 
@@ -58,21 +89,15 @@ const Inspector = () => {
         />
       )}
       {showEmotSate && (
-        <EmoStatesList
-          paginated={paginated}
-          currentPage={currentPage}
-          pageIndex={pageIndex}
-          setPageIndex={setPageIndex}
-        />
+        <EmoStatesList paginated={paginated} currentPage={currentPage} />
       )}
+      {/* {showOneDatViz && (
+        <OneDayViz currentPage={currentPage} pageIndex={pageIndex} />
+      )} */}
       {showOneDatViz && (
-        <OneDayViz
-          paginated={paginated}
-          currentPage={currentPage}
-          pageIndex={pageIndex}
-          setPageIndex={setPageIndex}
-        />
+        <OneMonthViz currentPage={monthPages} pageIndex={pageIndex} />
       )}
+
       <div className='buttons bottom'>
         <button
           onClick={() => {

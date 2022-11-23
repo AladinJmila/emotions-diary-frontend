@@ -3,23 +3,77 @@ import { useRef, useEffect } from 'react';
 import { shadesOfGrey } from '../utilities/helpers';
 
 function OneDayViz({ currentPage, pageIndex }) {
-  const children = useRef(null);
+  const data = useRef(null);
+  // console.log(currentPage);
 
   useEffect(() => {
-    children.current = currentPage.map(emos => ({
-      name: emos.emotion.name,
-      value: emos.intensity * 1000,
-      color: emos.color,
-    }));
-    genGraph(children.current);
-  }, [currentPage, pageIndex, children]);
+    data.current = currentPage.map(month => {
+      return {
+        name: new Date(month[0][0].date).toLocaleString('default', {
+          month: 'long',
+        }),
+        children: [
+          {
+            name: 'Week1',
+            children: month.map(day => {
+              return {
+                name: new Date(day[0].date).toLocaleString('default', {
+                  weekday: 'short',
+                }),
+                children: day.map(emos => ({
+                  name: emos.emotion.name,
+                  value: emos.intensity * 1000,
+                  color: emos.color,
+                })),
+              };
+            }),
+          },
+        ],
+      };
+    });
+    console.log(data.current[0]);
+    genGraph(data.current[0]);
+    // genGraph();
+  }, [currentPage, pageIndex, data]);
 
   const verticalSpacing = 1;
 
-  const genGraph = children => {
-    const data = {
-      name: 'cluster',
-      children,
+  const genGraph = data => {
+    const data2 = {
+      name: 'flare',
+      children: [
+        {
+          name: 'analytics',
+          children: [
+            {
+              name: 'cluster',
+              children: [
+                { name: 'AgglomerativeCluster', value: 3938 },
+                { name: 'CommunityStructure', value: 3812 },
+                { name: 'HierarchicalCluster', value: 6714 },
+                { name: 'MergeEdge', value: 4578 },
+                { name: 'MergeEdge', value: 2222 },
+                { name: 'MergeEdge', value: 5555 },
+                { name: 'MergeEdge', value: 4183 },
+              ],
+            },
+            // {
+            //   name: 'graph',
+            //   children: [
+            //     { name: 'BetweennessCentrality', value: 3534 },
+            //     { name: 'LinkDistance', value: 5731 },
+            //     { name: 'MaxFlowMinCut', value: 7840 },
+            //     { name: 'ShortestPaths', value: 5914 },
+            //     { name: 'SpanningTree', value: 3416 },
+            //   ],
+            // },
+            // {
+            //   name: 'optimization',
+            //   children: [{ name: 'AspectRatioBanker', value: 7074 }],
+            // },
+          ],
+        },
+      ],
     };
 
     const width = 932;
@@ -32,6 +86,12 @@ function OneDayViz({ currentPage, pageIndex }) {
           .sum(d => d.value)
           .sort((a, b) => b.value - a.value)
       );
+
+    const color = d3
+      .scaleLinear()
+      .domain([0, 5])
+      .range(['hsl(152,80%,80%)', 'hsl(228,30%,40%)'])
+      .interpolate(d3.interpolateHcl);
 
     const root = pack(data);
     let focus = root;
@@ -59,11 +119,11 @@ function OneDayViz({ currentPage, pageIndex }) {
       .selectAll('circle')
       .data(root.descendants().slice(1))
       .join('circle')
-      .attr('fill', d => d.data.color)
+      .attr('fill', d => (d.children ? color(d.depth) : d.data.color))
       .attr('pointer-events', d => (!d.children ? 'none' : null))
       // .attr('stroke', 'var(--color1)')
-      .attr('stroke', 'var(--bw-shade1)')
-      .attr('stroke-width', 40)
+      .attr('stroke', d => (d.children ? 'none' : 'var(--bw-shade1)'))
+      .attr('stroke-width', 10)
       .on('mouseover', function () {
         d3.select(this).attr('stroke', '#000');
       })
@@ -176,7 +236,7 @@ function OneDayViz({ currentPage, pageIndex }) {
     return svg.node();
   };
 
-  return <>{children && <div id='svg'></div>}</>;
+  return <>{data && <div id='svg'></div>}</>;
 }
 
 export default OneDayViz;

@@ -72,6 +72,7 @@ function OneWeekViz() {
     let view;
 
     d3.select('svg').remove();
+    d3.select('svg').remove();
 
     const svg = d3
       .select('#svg')

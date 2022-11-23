@@ -1,8 +1,7 @@
-import DaysNav from './DaysNav';
 import EmoState from './EmoState';
 import './EmoStatesList.css';
 
-function EmoStatesList({ paginated, currentPage, pageIndex, setPageIndex }) {
+function EmoStatesList({ paginated, currentPage }) {
   return (
     <div className='emo-states-container'>
       {paginated && (
