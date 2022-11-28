@@ -33,49 +33,11 @@ function OneDayViz({ currentPage, pageIndex }) {
     });
     console.log(data.current[0]);
     genGraph(data.current[0]);
-    // genGraph();
   }, [currentPage, pageIndex, data]);
 
   const verticalSpacing = 1;
 
   const genGraph = data => {
-    const data2 = {
-      name: 'flare',
-      children: [
-        {
-          name: 'analytics',
-          children: [
-            {
-              name: 'cluster',
-              children: [
-                { name: 'AgglomerativeCluster', value: 3938 },
-                { name: 'CommunityStructure', value: 3812 },
-                { name: 'HierarchicalCluster', value: 6714 },
-                { name: 'MergeEdge', value: 4578 },
-                { name: 'MergeEdge', value: 2222 },
-                { name: 'MergeEdge', value: 5555 },
-                { name: 'MergeEdge', value: 4183 },
-              ],
-            },
-            // {
-            //   name: 'graph',
-            //   children: [
-            //     { name: 'BetweennessCentrality', value: 3534 },
-            //     { name: 'LinkDistance', value: 5731 },
-            //     { name: 'MaxFlowMinCut', value: 7840 },
-            //     { name: 'ShortestPaths', value: 5914 },
-            //     { name: 'SpanningTree', value: 3416 },
-            //   ],
-            // },
-            // {
-            //   name: 'optimization',
-            //   children: [{ name: 'AspectRatioBanker', value: 7074 }],
-            // },
-          ],
-        },
-      ],
-    };
-
     const width = 932;
     const height = 1.6 * width;
 
@@ -90,7 +52,7 @@ function OneDayViz({ currentPage, pageIndex }) {
     const color = d3
       .scaleLinear()
       .domain([0, 5])
-      .range(['hsl(152,80%,80%)', 'hsl(228,30%,40%)'])
+      .range(['hsl(240,80%,80%)', 'hsl(300,30%,40%)'])
       .interpolate(d3.interpolateHcl);
 
     const root = pack(data);
@@ -103,11 +65,7 @@ function OneDayViz({ currentPage, pageIndex }) {
     const svg = d3
       .select('#svg')
       .append('svg')
-      .attr('viewBox', `-${width / 2} -${height / 1.9} ${width} ${height}`)
-      // .attr(
-      //   'viewBox',
-      //   `-${width / 2.55} -${height / 2.1} ${width * 0.85} ${height}`
-      // )
+      .attr('viewBox', `-${width / 2} -${height / 2.1} ${width} ${height}`)
       .style('display', 'block')
       .style('margin', '0 -14px')
       .style('background', 'transparent')
@@ -121,8 +79,7 @@ function OneDayViz({ currentPage, pageIndex }) {
       .join('circle')
       .attr('fill', d => (d.children ? color(d.depth) : d.data.color))
       .attr('pointer-events', d => (!d.children ? 'none' : null))
-      // .attr('stroke', 'var(--color1)')
-      .attr('stroke', d => (d.children ? 'none' : 'var(--bw-shade1)'))
+      .attr('stroke', d => (d.children ? 'none' : 'var(--color1)'))
       .attr('stroke-width', 10)
       .on('mouseover', function () {
         d3.select(this).attr('stroke', '#000');
@@ -134,27 +91,6 @@ function OneDayViz({ currentPage, pageIndex }) {
         'click',
         (event, d) => focus !== d && (zoom(event, d), event.stopPropagation())
       );
-
-    // const node2 = svg
-    //   .append('g')
-    //   .selectAll('circle')
-    //   .data(root.descendants().slice(1))
-    //   .join('circle')
-    //   .attr('fill', d => d.data.color)
-    //   .attr('pointer-events', d => (!d.children ? 'none' : null))
-    //   .attr('stroke', 'var(--color1)')
-    //   // .attr('stroke', 'var(--bw-shade1)')
-    //   .attr('stroke-width', 10)
-    //   .on('mouseover', function () {
-    //     d3.select(this).attr('stroke', '#000');
-    //   })
-    //   .on('mouseout', function () {
-    //     d3.select(this).attr('stroke', null);
-    //   })
-    //   .on(
-    //     'click',
-    //     (event, d) => focus !== d && (zoom(event, d), event.stopPropagation())
-    //   );
 
     const label = svg
       .append('g')
@@ -197,13 +133,6 @@ function OneDayViz({ currentPage, pageIndex }) {
           })`
       );
       node.attr('r', d => d.r * k * 1);
-
-      // node2.attr(
-      //   'transform',
-      //   d =>
-      //     `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k * verticalSpacing})`
-      // );
-      // node2.attr('r', d => d.r * k * 0.9);
     }
 
     function zoom(event, d) {

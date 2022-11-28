@@ -20,6 +20,7 @@ const Inspector = () => {
     if (emoStates.length) {
       setPaginated(dayPaginate());
       setCurrentPage(dayPaginate()[pageIndex]);
+      weekPaginate();
       setMonthPages(monthPaginate());
     }
   }, [emoStates, pageIndex]);
@@ -48,6 +49,45 @@ const Inspector = () => {
       }
     }
 
+    return paginated;
+  }
+
+  function weekPaginate() {
+    const paginated = [];
+    let index = 0;
+    const daysPages = dayPaginate();
+
+    for (let i = daysPages.length - 1; i >= 1; i--) {
+      const current = daysPages[i][0];
+      const prev = daysPages[i - 1][0];
+      const currentDate = new Date(current.date);
+      const prevDate = new Date(prev.date);
+
+      function getWeekNumber(endDate) {
+        const startDate = new Date(new Date().getFullYear(), 0, 1);
+
+        const totalDays =
+          Math.floor(endDate - startDate) / (24 * 60 * 60 * 1000);
+
+        return Math.ceil(totalDays / 7);
+      }
+
+      console.log(getWeekNumber(currentDate));
+      console.log(getWeekNumber(prevDate));
+
+      if (!paginated[index]) paginated[index] = [];
+      paginated[index].push(daysPages[i]);
+
+      if (
+        getWeekNumber(currentDate) === getWeekNumber(prevDate) &&
+        currentDate.getFullYear() === prevDate.getFullYear()
+      ) {
+        continue;
+      } else {
+        index++;
+      }
+    }
+    console.log(paginated);
     return paginated;
   }
 
@@ -91,12 +131,12 @@ const Inspector = () => {
       {showEmotSate && (
         <EmoStatesList paginated={paginated} currentPage={currentPage} />
       )}
-      {/* {showOneDatViz && (
-        <OneDayViz currentPage={currentPage} pageIndex={pageIndex} />
-      )} */}
       {showOneDatViz && (
-        <OneMonthViz currentPage={monthPages} pageIndex={pageIndex} />
+        <OneDayViz currentPage={currentPage} pageIndex={pageIndex} />
       )}
+      {/* {showOneDatViz && (
+        <OneMonthViz currentPage={monthPages} pageIndex={pageIndex} />
+      )} */}
 
       <div className='buttons bottom'>
         <button

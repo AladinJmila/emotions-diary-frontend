@@ -1,0 +1,20 @@
+.ellipsis-menu {
+  width: 100px;
+  border: 1px white solid;
+  padding: 5px 10px;
+  border-radius: 10px 0 10px 10px;
+}
+
+.ellipsis-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+}
+
+div.ellipsis-menu-item:not(:first-of-type):not(:last-of-type) {
+  margin: 4px 0;
+  padding: 6px 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
