@@ -9,8 +9,8 @@ const Home = () => {
 
   return (
     <div className='home full-vh'>
-      {/* <Ellipsis /> */}
-      <div className='atlas-emotions'>
+      <Ellipsis />
+      {/* <div className='atlas-emotions'>
         <h3>The Atlas Of Emotions</h3>
         <a href='http://atlasofemotions.org/' target='_blank'>
           learn more about emotions from experts
@@ -32,7 +32,7 @@ const Home = () => {
         <Modal>
           <EmoStatesForm setShowModal={setShowModal} />
         </Modal>
-      )}
+      )} */}
     </div>
   );
 };

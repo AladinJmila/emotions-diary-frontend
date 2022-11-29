@@ -1,8 +1,20 @@
+.ellipsis {
+  position: relative;
+  /* border: 1px red solid; */
+  width: 20px;
+  float: right;
+}
+
 .ellipsis-menu {
+  background-color: var(--color1);
+  box-shadow: 0 0 7px rgba(255, 255, 255, 0.5);
   width: 100px;
   border: 1px white solid;
   padding: 5px 10px;
   border-radius: 10px 0 10px 10px;
+  position: absolute;
+  right: 30px;
+  top: 5px;
 }
 
 .ellipsis-menu-item {
