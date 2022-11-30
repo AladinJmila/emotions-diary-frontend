@@ -17,12 +17,12 @@ const Editor = () => {
   }, []);
 
   return (
-    <div className='editor full-vh'>
+    <div className='categories full-vh'>
       {categories &&
         categories.map(g => (
-          <h2 key={g.id} onClick={() => navigate(`/categories/${g.id}`)}>
+          <button key={g.id} onClick={() => navigate(`/categories/${g.id}`)}>
             {g.name}
-          </h2>
+          </button>
         ))}
       {showModal && (
         <Modal>
@@ -30,7 +30,7 @@ const Editor = () => {
         </Modal>
       )}
       <div className='bottom'>
-        <button onClick={() => setShowModal(true)}>Add</button>
+        <button className='add-btn' onClick={() => setShowModal(true)} />
       </div>
     </div>
   );

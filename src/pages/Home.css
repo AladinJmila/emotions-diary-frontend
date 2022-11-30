@@ -24,7 +24,7 @@
   transform: translateY(-36px);
 }
 
-#add-emo-state-btn {
+.add-btn {
   position: absolute;
   bottom: 26px;
   cursor: pointer;
@@ -36,7 +36,7 @@
   left: calc(50% - 35px);
 }
 
-#add-emo-state-btn::after {
+.add-btn::after {
   content: '';
   display: block;
   border-bottom: 4px solid #fff;
@@ -45,7 +45,7 @@
   top: 47%;
 }
 
-#add-emo-state-btn::before {
+.add-btn::before {
   content: '';
   display: block;
   border-left: 4px solid #fff;

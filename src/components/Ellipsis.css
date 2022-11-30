@@ -1,6 +1,5 @@
 .ellipsis {
   position: relative;
-  /* border: 1px red solid; */
   width: 20px;
   float: right;
 }
@@ -15,6 +14,7 @@
   position: absolute;
   right: 30px;
   top: 5px;
+  z-index: 2000 !important;
 }
 
 .ellipsis-menu-item {

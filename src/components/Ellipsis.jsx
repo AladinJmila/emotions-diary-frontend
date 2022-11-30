@@ -25,12 +25,14 @@ function Ellipsis({ item }) {
     };
   }, [menu]);
 
+  function handleMenuDisplay(e) {
+    e.stopPropagation();
+    setShowMenu(!showMenu);
+  }
+
   return (
     <div ref={ellipsis} className='ellipsis'>
-      <i
-        onClick={() => setShowMenu(!showMenu)}
-        className='fa fa-ellipsis-v pointer'
-      ></i>
+      <i onClick={handleMenuDisplay} className='fa fa-ellipsis-v pointer'></i>
       {showMenu && (
         <div ref={menu} className='ellipsis-menu'>
           <div className='ellipsis-menu-item'>

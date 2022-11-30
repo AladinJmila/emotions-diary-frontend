@@ -11,7 +11,7 @@ const CategoriesForm = ({ setShowModal }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // addCategory({ id: randomId(),  name, energy });
+    addCategory({ id: randomId(), name, energy });
     console.log({ id: randomId(), name, energy });
     setName('');
     setShowModal(false);

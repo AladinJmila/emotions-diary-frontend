@@ -1,4 +1,3 @@
-import Ellipsis from '../components/Ellipsis';
 import EmoStatesForm from '../components/EmoStatesForm';
 import Modal from '../components/Modal';
 import { useUI } from '../hooks/useUI';
@@ -9,8 +8,7 @@ const Home = () => {
 
   return (
     <div className='home full-vh'>
-      <Ellipsis />
-      {/* <div className='atlas-emotions'>
+      <div className='atlas-emotions'>
         <h3>The Atlas Of Emotions</h3>
         <a href='http://atlasofemotions.org/' target='_blank'>
           learn more about emotions from experts
@@ -24,15 +22,16 @@ const Home = () => {
           <h2>Inspect</h2>
         </a>
         <button
+          className='add-btn'
           id='add-emo-state-btn'
           onClick={() => setShowModal(true)}
-        ></button>
+        />
       </div>
       {showModal && (
         <Modal>
           <EmoStatesForm setShowModal={setShowModal} />
         </Modal>
-      )} */}
+      )}
     </div>
   );
 };

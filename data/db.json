@@ -24,6 +24,11 @@
       "id": "5",
       "name": "Disgust",
       "energy": "negative"
+    },
+    {
+      "id": "t4j4tby0",
+      "name": "Custom",
+      "energy": "positive"
     }
   ],
   "emotions": [
@@ -131,6 +136,18 @@
       "name": "Revulsion",
       "description": "A mixture of disgust and loathing.",
       "posNeg": 1
+    },
+    {
+      "id": "nmvuv674",
+      "categoryId": "1",
+      "name": "Farah",
+      "description": "DevTools now identifies CSS styles that are valid but have no visible effect. In the Styles pane, DevTools fades out the inactive propertie"
+    },
+    {
+      "id": "an9a3thc",
+      "categoryId": "1",
+      "name": "longnamemotion",
+      "description": "Once the first row gets to a point where there is not enough space to place another 160 pixel item, a new flex line is created for the items and so on until all of the items are placed"
     }
   ],
   "emo-states": [
