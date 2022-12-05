@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useState, useRef } from 'react';
 import { shadesOfGrey } from '../utilities/helpers';
+import Ellipsis from './Ellipsis';
 
 function EmoState({ emos }) {
   const [show, setShow] = useState(false);
@@ -19,12 +20,18 @@ function EmoState({ emos }) {
       : 'black',
   };
 
+  const date = new Date(emos.date);
+
   return (
     <li ref={ref}>
       <button style={styles} onClick={() => setShow(show ? false : true)}>
         {emos.emotion.name}
+        <span>
+          {date.getHours()} : {date.getMinutes()}
+        </span>
+        <Ellipsis />
       </button>
-      {show && <p>{emos.trigger}</p>}
+      {show && <p className='description'>{emos.trigger}</p>}
     </li>
   );
 }

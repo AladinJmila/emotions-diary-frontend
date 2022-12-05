@@ -20,14 +20,14 @@ function Category() {
 
   return (
     <div className='category'>
-      {emotions && emotions.map(em => <p key={em.id}>{em.name}</p>)}
+      {emotions && emotions.map(em => <button key={em.id}>{em.name}</button>)}
       {showModal && (
         <Modal>
           <EmotionsForm setShowModal={setShowModal} categories={categories} />
         </Modal>
       )}
       <div className='bottom'>
-        <button onClick={() => setShowModal(true)}>Add</button>
+        <button className='add-btn' onClick={() => setShowModal(true)} />
       </div>
     </div>
   );

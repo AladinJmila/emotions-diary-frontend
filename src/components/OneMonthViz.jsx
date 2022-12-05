@@ -1,63 +1,45 @@
 import * as d3 from 'd3';
-import { useEffect } from 'react';
-import { useEmoStates } from '../hooks/useEmoStates';
+import { useRef, useEffect } from 'react';
+import { shadesOfGrey } from '../utilities/helpers';
 
-function OneWeekViz() {
-  const { emoStates, loadEmoStates } = useEmoStates();
+function OneDayViz({ currentPage, pageIndex }) {
+  const data = useRef(null);
+  // console.log(currentPage);
 
   useEffect(() => {
-    !emoStates.length && loadEmoStates();
-    genGraph();
-  }, []);
+    data.current = currentPage.map(month => {
+      return {
+        name: new Date(month[0][0].date).toLocaleString('default', {
+          month: 'long',
+        }),
+        children: [
+          {
+            name: 'Week1',
+            children: month.map(day => {
+              return {
+                name: new Date(day[0].date).toLocaleString('default', {
+                  weekday: 'short',
+                }),
+                children: day.map(emos => ({
+                  name: emos.emotion.name,
+                  value: emos.intensity * 1000,
+                  color: emos.color,
+                })),
+              };
+            }),
+          },
+        ],
+      };
+    });
+    console.log(data.current[0]);
+    genGraph(data.current[0]);
+  }, [currentPage, pageIndex, data]);
 
-  // console.log(emoStates);
+  const verticalSpacing = 1;
 
-  const genGraph = () => {
-    const color = d3
-      .scaleLinear()
-      .domain([0, 5])
-      .range(['hsl(152,80%,80%)', 'hsl(228,30%,40%)'])
-      .interpolate(d3.interpolateHcl);
-
-    const data = {
-      // name: 'flare',
-      // children: [
-      //   {
-      // name: 'analytics',
-      // children: [
-      //   {
-      name: 'cluster',
-      children: [
-        { name: 'AgglomerativeCluster', value: 3938 },
-        { name: 'CommunityStructure', value: 3812 },
-        { name: 'HierarchicalCluster', value: 6714 },
-        { name: 'MergeEdge', value: 4578 },
-        { name: 'MergeEdge', value: 2222 },
-        { name: 'MergeEdge', value: 5555 },
-        { name: 'MergeEdge', value: 4183 },
-        //   ],
-        // },
-        // {
-        //   name: 'graph',
-        //   children: [
-        //     { name: 'BetweennessCentrality', value: 3534 },
-        //     { name: 'LinkDistance', value: 5731 },
-        //     { name: 'MaxFlowMinCut', value: 7840 },
-        //     { name: 'ShortestPaths', value: 5914 },
-        //     { name: 'SpanningTree', value: 3416 },
-        //   ],
-        // },
-        // {
-        //   name: 'optimization',
-        //   children: [{ name: 'AspectRatioBanker', value: 7074 }],
-        // },
-      ],
-      //   },
-      // ],
-    };
-
+  const genGraph = data => {
     const width = 932;
-    const height = 1.8 * width;
+    const height = 1.6 * width;
 
     const pack = data =>
       d3.pack().size([width, height]).padding(3)(
@@ -66,6 +48,12 @@ function OneWeekViz() {
           .sum(d => d.value)
           .sort((a, b) => b.value - a.value)
       );
+
+    const color = d3
+      .scaleLinear()
+      .domain([0, 5])
+      .range(['hsl(240,80%,80%)', 'hsl(300,30%,40%)'])
+      .interpolate(d3.interpolateHcl);
 
     const root = pack(data);
     let focus = root;
@@ -77,7 +65,7 @@ function OneWeekViz() {
     const svg = d3
       .select('#svg')
       .append('svg')
-      .attr('viewBox', `-${width / 2} -${height / 2} ${width} ${height}`)
+      .attr('viewBox', `-${width / 2} -${height / 2.1} ${width} ${height}`)
       .style('display', 'block')
       .style('margin', '0 -14px')
       .style('background', 'transparent')
@@ -89,9 +77,9 @@ function OneWeekViz() {
       .selectAll('circle')
       .data(root.descendants().slice(1))
       .join('circle')
-      .attr('fill', d => (d.children ? color(d.depth) : 'white'))
+      .attr('fill', d => (d.children ? color(d.depth) : d.data.color))
       .attr('pointer-events', d => (!d.children ? 'none' : null))
-      .attr('stroke', 'var(--color1)')
+      .attr('stroke', d => (d.children ? 'none' : 'var(--color1)'))
       .attr('stroke-width', 10)
       .on('mouseover', function () {
         d3.select(this).attr('stroke', '#000');
@@ -106,14 +94,21 @@ function OneWeekViz() {
 
     const label = svg
       .append('g')
-      .style('font', '24px sans-serif')
+      .style('font', '32px sans-serif')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
+      .attr('stroke-width', 0)
       .selectAll('text')
       .data(root.descendants())
       .join('text')
       .style('fill-opacity', d => (d.parent === root ? 1 : 0))
       .style('display', d => (d.parent === root ? 'inline' : 'none'))
+      .attr('stroke', d =>
+        shadesOfGrey.slice(0, 5).includes(d.data.color) ? 'white' : 'black'
+      )
+      .attr('fill', d =>
+        shadesOfGrey.slice(0, 5).includes(d.data.color) ? 'white' : 'black'
+      )
       .text(d => d.data.name);
 
     zoomTo([root.x, root.y, root.r * 2]);
@@ -125,13 +120,19 @@ function OneWeekViz() {
 
       label.attr(
         'transform',
-        d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`
+        d =>
+          `translate(${(d.x - v[0]) * k * 1},${
+            (d.y - v[1]) * k * verticalSpacing
+          })`
       );
       node.attr(
         'transform',
-        d => `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k})`
+        d =>
+          `translate(${(d.x - v[0]) * k * 1},${
+            (d.y - v[1]) * k * verticalSpacing
+          })`
       );
-      node.attr('r', d => d.r * k);
+      node.attr('r', d => d.r * k * 1);
     }
 
     function zoom(event, d) {
@@ -164,7 +165,7 @@ function OneWeekViz() {
     return svg.node();
   };
 
-  return <div id='svg'></div>;
+  return <>{data && <div id='svg'></div>}</>;
 }
 
-export default OneWeekViz;
+export default OneDayViz;

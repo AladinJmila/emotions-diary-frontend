@@ -3,7 +3,7 @@ import { useEmotions } from '../hooks/useEmotions';
 import { randomId } from '../utilities/helpers';
 import './Forms.css';
 
-const EmotionsForm = ({ setShowModal, categories }) => {
+const EmotionsForm = ({ setShowModal, categories, editData }) => {
   const [categoryId, setCategoryId] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -13,7 +13,7 @@ const EmotionsForm = ({ setShowModal, categories }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // addEmotion({ id: randomId(), categoryId, name, description });
+    addEmotion({ id: randomId(), categoryId, name, description });
     console.log({ id: randomId(), categoryId, name, description, posNeg });
     setName('');
     setDescription('');
@@ -50,7 +50,7 @@ const EmotionsForm = ({ setShowModal, categories }) => {
         value={description}
         onChange={e => setDescription(e.target.value)}
       ></textarea>
-      <label htmlFor='pos-neg-scale'>Positivity</label>
+      <label htmlFor='pos-neg-scale'>Positivity: {posNeg}</label>
       <input
         type='range'
         id='pos-neg-scale'

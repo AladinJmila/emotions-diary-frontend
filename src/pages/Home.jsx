@@ -22,9 +22,10 @@ const Home = () => {
           <h2>Inspect</h2>
         </a>
         <button
+          className='add-btn'
           id='add-emo-state-btn'
           onClick={() => setShowModal(true)}
-        ></button>
+        />
       </div>
       {showModal && (
         <Modal>

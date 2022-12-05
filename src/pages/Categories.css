@@ -1,4 +1,29 @@
-.editor {
+.categories {
   padding: 0 20px;
   position: relative;
+}
+
+.categories > button,
+.category > button {
+  background-color: transparent;
+  border: 1px white solid;
+  color: white;
+}
+
+.category > button {
+  margin: 0;
+  flex: 1;
+}
+
+.categories button:hover,
+.categories button:active {
+  background-color: white;
+  color: var(--color1);
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  gap: 10px;
 }

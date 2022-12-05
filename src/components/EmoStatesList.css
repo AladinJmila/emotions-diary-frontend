@@ -2,10 +2,46 @@
   list-style-type: none;
   overflow: auto;
   max-height: 75vh;
+  overflow: visible;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+
+.emo-states-container li {
+  position: relative;
 }
 
 .emo-states-container button {
-  border: 3px solid var(--color1);
-  border-radius: 10px;
-  margin: 10px auto;
+  position: relative;
+  margin: 14px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.85;
+  background-clip: border-box;
+  margin: 0;
+}
+
+.emo-states-container button span {
+  position: absolute;
+  right: 60px;
+  font-size: 0.8em;
+  pointer-events: none;
+}
+
+/* .emo-states-container li::after {
+  content: '';
+  display: block;
+  border-top: 1px solid white;
+  width: 100%;
+}
+
+.emo-states-container li:last-of-type:after {
+  content: '';
+  display: none;
+} */
+
+.emo-states-container .description {
+  margin-bottom: 8px;
 }

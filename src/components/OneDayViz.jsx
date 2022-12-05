@@ -1,28 +1,31 @@
 import * as d3 from 'd3';
-import { useEffect } from 'react';
-import { useEmoStates } from '../hooks/useEmoStates';
+import { useRef, useEffect } from 'react';
 import { shadesOfGrey } from '../utilities/helpers';
 
-function OneDayViz() {
-  const { emoStates, loadEmoStates } = useEmoStates();
+function OneDayViz({ currentPage, pageIndex }) {
+  const children = useRef(null);
+  const svg = useRef(null);
 
   useEffect(() => {
-    !emoStates.length && loadEmoStates();
-    genGraph();
-  }, []);
-
-  const children = emoStates.map(emos => ({
-    name: emos.emotion.name,
-    value: emos.intensity * 1000,
-    color: emos.color,
-  }));
+    children.current = currentPage.map(emos => ({
+      name: emos.emotion.name,
+      value: emos.intensity * 1000,
+      color: emos.color,
+    }));
+    genGraph(children.current);
+  }, [currentPage, pageIndex, children]);
 
   const verticalSpacing = 1;
 
-  const genGraph = () => {
+  const genGraph = children => {
     const data = {
-      name: 'cluster',
-      children,
+      name: '',
+      children: [
+        {
+          name: '',
+          children,
+        },
+      ],
     };
 
     const width = 932;
@@ -36,20 +39,23 @@ function OneDayViz() {
           .sort((a, b) => b.value - a.value)
       );
 
+    const color = d3
+      .scaleLinear()
+      .domain([0, 5])
+      .range(['hsl(240,80%,90%)', 'hsl(300,30%,90%)'])
+      .interpolate(d3.interpolateHcl);
+
     const root = pack(data);
     let focus = root;
     let view;
 
     d3.select('svg').remove();
+    d3.select('svg').remove();
 
     const svg = d3
       .select('#svg')
       .append('svg')
-      .attr('viewBox', `-${width / 2} -${height / 1.9} ${width} ${height}`)
-      // .attr(
-      //   'viewBox',
-      //   `-${width / 2.55} -${height / 2.1} ${width * 0.85} ${height}`
-      // )
+      .attr('viewBox', `-${width / 2} -${height / 2.1} ${width} ${height}`)
       .style('display', 'block')
       .style('margin', '0 -14px')
       .style('background', 'transparent')
@@ -61,38 +67,16 @@ function OneDayViz() {
       .selectAll('circle')
       .data(root.descendants().slice(1))
       .join('circle')
-      .attr('fill', d => d.data.color)
-      .attr('pointer-events', d => (!d.children ? 'none' : null))
-      // .attr('stroke', 'var(--color1)')
-      .attr('stroke', 'var(--bw-shade1)')
-      .attr('stroke-width', 40)
-      .on('mouseover', function () {
-        d3.select(this).attr('stroke', '#000');
-      })
-      .on('mouseout', function () {
-        d3.select(this).attr('stroke', null);
-      })
-      .on(
-        'click',
-        (event, d) => focus !== d && (zoom(event, d), event.stopPropagation())
-      );
-
-    const node2 = svg
-      .append('g')
-      .selectAll('circle')
-      .data(root.descendants().slice(1))
-      .join('circle')
-      .attr('fill', d => d.data.color)
-      .attr('pointer-events', d => (!d.children ? 'none' : null))
-      .attr('stroke', 'var(--color1)')
-      // .attr('stroke', 'var(--bw-shade1)')
+      .attr('fill', d => (d.children ? color(d.depth) : d.data.color))
+      // .attr('pointer-events', d => (!d.children ? 'none' : null))
+      .attr('stroke', d => (d.children ? 'none' : '#DAD3F7'))
       .attr('stroke-width', 10)
-      .on('mouseover', function () {
-        d3.select(this).attr('stroke', '#000');
-      })
-      .on('mouseout', function () {
-        d3.select(this).attr('stroke', null);
-      })
+      // .on('mouseover', function () {
+      //   d3.select(this).attr('stroke', '#000');
+      // })
+      // .on('mouseout', function () {
+      //   d3.select(this).attr('stroke', null);
+      // })
       .on(
         'click',
         (event, d) => focus !== d && (zoom(event, d), event.stopPropagation())
@@ -139,13 +123,6 @@ function OneDayViz() {
           })`
       );
       node.attr('r', d => d.r * k * 1);
-
-      node2.attr(
-        'transform',
-        d =>
-          `translate(${(d.x - v[0]) * k},${(d.y - v[1]) * k * verticalSpacing})`
-      );
-      node2.attr('r', d => d.r * k * 0.9);
     }
 
     function zoom(event, d) {
@@ -178,7 +155,7 @@ function OneDayViz() {
     return svg.node();
   };
 
-  return <div id='svg'></div>;
+  return <>{children && <div ref={svg} id='svg'></div>}</>;
 }
 
 export default OneDayViz;

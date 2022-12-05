@@ -3,7 +3,7 @@
   --bw-shade1: #282c34;
   --bw-shade2: #494d56;
   --bw-shade10: #fafafa;
-  --color1: #a22afe;
+  --color1: #a090df;
 }
 
 body,
@@ -18,6 +18,10 @@ ul,
 li {
   margin: 0;
   padding: 0;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
@@ -53,6 +57,7 @@ form span {
   margin: 10px auto;
   padding: 10px;
   font-size: 1.2em;
+  border: none;
 }
 
 label,
@@ -95,4 +100,8 @@ button {
 
 .show {
   display: initial;
+}
+
+.pointer {
+  cursor: pointer;
 }
