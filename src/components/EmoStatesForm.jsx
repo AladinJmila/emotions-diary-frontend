@@ -5,10 +5,10 @@ import { useEmotions } from '../hooks/useEmotions';
 import { useEmoStates } from '../hooks/useEmoStates';
 import { randomId, shadesOfGrey } from '../utilities/helpers';
 
-function EmoStatesForm({ setShowModal }) {
+function EmoStatesForm({ setShowModal, emoState }) {
   const { categories, loadCategories } = useCategories();
   const { emotions, loadEmotions } = useEmotions();
-  const { addEmoState } = useEmoStates();
+  const { addEmoState, updateEmoState } = useEmoStates();
   const [filteredEmotions, setFilteredEmotions] = useState(emotions);
   const [emotionId, setEmotionId] = useState(null);
   const [trigger, setTrigger] = useState('');
@@ -22,24 +22,31 @@ function EmoStatesForm({ setShowModal }) {
     }
   };
 
+  const mapToViewModel = emoState => {
+    setTrigger(emoState.trigger);
+    setIntensity(emoState.intensity);
+  };
+
   useEffect(() => {
     !categories.length && loadCategories();
     !emotions.length && loadEmotions();
+
+    emoState && mapToViewModel(emoState);
   }, []);
 
   const handleSubmit = e => {
     const emotion = filteredEmotions.filter(em => em.id === emotionId)[0];
     const body = {
-      id: randomId(),
+      id: emoState ? emoState.id : randomId(),
       emotion,
       trigger,
       intensity,
-      date: new Date(),
+      date: emoState ? emoState.date : new Date(),
       color: shadesOfGrey[emotion.posNeg - 1],
     };
 
     e.preventDefault();
-    addEmoState(body);
+    emoState ? updateEmoState(body) : addEmoState(body);
 
     setShowModal(false);
   };
@@ -56,7 +63,7 @@ function EmoStatesForm({ setShowModal }) {
           filterEmotions(e.target.value);
         }}
       >
-        <option value=''></option>
+        <option value={emoState ? emoState.emotion.id : ''}></option>
         {categories &&
           categories.map(c => (
             <option key={c.id} value={c.id}>
