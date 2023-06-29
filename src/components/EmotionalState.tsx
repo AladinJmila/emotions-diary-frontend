@@ -8,6 +8,7 @@ interface EmotionalState {
 
 const EmotionalState = () => {
   const [emotionalStates, setEmotionalStates] = useState<EmotionalState[]>([]);
+  const [stateDescription, setStateDescription] = useState('');
 
   useEffect(() => {
     axios
@@ -19,10 +20,27 @@ const EmotionalState = () => {
 
   return (
     <>
-      <div>EmotionalState</div>
+      <div className='log-state'>
+        <button>What's on your mind?</button>
+        <textarea
+          cols={50}
+          rows={25}
+          onChange={e => setStateDescription(e.target.value)}
+        ></textarea>
+        <button>
+          Ask ChatGPT and bring back the data to paste in box below
+        </button>
+        <textarea
+          cols={50}
+          rows={25}
+          onChange={e => setStateDescription(e.target.value)}
+        ></textarea>
+        <button>Save emotional state</button>
+      </div>
+      {/* <div>EmotionalState</div>
       {emotionalStates.map(es => (
         <p key={es.id}>{es.name}</p>
-      ))}
+      ))} */}
     </>
   );
 };
