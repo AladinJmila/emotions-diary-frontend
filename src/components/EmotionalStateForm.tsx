@@ -6,7 +6,7 @@ interface EmotionalState {
   name: string;
 }
 
-const EmotionalState = () => {
+const EmotionalStateForm = () => {
   const [emotionalStates, setEmotionalStates] = useState<EmotionalState[]>([]);
   const [stateDescription, setStateDescription] = useState('');
 
@@ -70,4 +70,4 @@ const EmotionalState = () => {
   );
 };
 
-export default EmotionalState;
+export default EmotionalStateForm;

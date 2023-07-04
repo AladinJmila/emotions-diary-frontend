@@ -1,8 +1,16 @@
 import './App.css';
-import EmotionalState from './components/EmotionalState';
+import EmotionalStateForm from './components/EmotionalStateForm';
+import EmotionsBrowser from './components/EmotionsBrowser';
+import Visualization from './components/Visualization';
 
 function App() {
-  return <EmotionalState />;
+  return (
+    <div className='app'>
+      <Visualization />
+      <EmotionalStateForm />
+      <EmotionsBrowser />
+    </div>
+  );
 }
 
 export default App;
