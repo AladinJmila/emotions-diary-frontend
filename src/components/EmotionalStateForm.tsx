@@ -7,9 +7,14 @@ interface EmotionalState {
   name: string;
 }
 
-const EmotionalStateForm = () => {
+interface Props {
+  setPassThis: (value: string) => void;
+}
+
+const EmotionalStateForm = ({ setPassThis }: Props) => {
   const [emotionalStates, setEmotionalStates] = useState<EmotionalState[]>([]);
   const [stateDescription, setStateDescription] = useState('');
+  const [stateJSON, setStateJSON] = useState('');
 
   const createPrompt = (description: string) => {
     return `
@@ -19,10 +24,13 @@ const EmotionalStateForm = () => {
     ${description}
     
     Template: {
-     "feeling": "<Feeling name>",
-     "intensity": "<Feeling intensity from 0 to 10>",
+     "name": "<Feeling name in one word>",
+     "description": "<Improved/cleaned description used to generate this data>"
+     "energy": "<Feeling energy from 0 to 1 (0 to 0.5, negative energy. 0.5 to 1, positive energy)>",
+     "intensity": "<Feeling intensity from 0 to 1>",
      "triggers": ["<Trigger 1>", "<Trigger 2>", "<Trigger 3>", "<Trigger 4>", "<Trigger 5>"],
      "copingMechanisms": ["<Coping Mechanism 1>", "<Coping Mechanism 2>", "<Coping Mechanism 3>", "<Coping Mechanism 4>", "<Coping Mechanism 5>"]
+     "tags": ["<tag derived from description 1>", "<tag derived from description 2>", "<tag derived from description 3>"]
     }
     `;
   };
@@ -59,9 +67,11 @@ const EmotionalStateForm = () => {
         <textarea
           cols={50}
           rows={25}
-          onChange={e => setStateDescription(e.target.value)}
+          onChange={e => setStateJSON(e.target.value)}
         ></textarea>
-        <button>Save emotional state</button>
+        <button onClick={() => setPassThis(stateJSON)}>
+          Save emotional state
+        </button>
       </div>
       {/* <div>EmotionalState</div>
       {emotionalStates.map(es => (
