@@ -1,0 +1,9 @@
+.log-state {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-state textarea {
+  border: 2px black solid;
+  resize: none;
+}
