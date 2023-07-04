@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './EmotionalStateForm.css';
 
-interface EmotionalState {
-  id: number;
+export interface EmotionalState {
+  id?: number;
   name: string;
+  description: string;
+  energy: number;
+  intensity: number;
+  triggers: string[];
+  copingMechanisms: string[];
+  tags: string[];
 }
 
 interface Props {

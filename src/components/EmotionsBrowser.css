@@ -1,4 +1,8 @@
 .emotions-browser {
-  text-align: center;
   border: 1px solid black;
+  padding: 20px;
+}
+.emotions-browser h2 {
+  text-align: center;
+  margin-bottom: 50px;
 }
