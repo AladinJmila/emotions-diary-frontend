@@ -76,13 +76,9 @@ const EmotionalStateForm = ({ setPassThis }: Props) => {
           onChange={e => setStateJSON(e.target.value)}
         ></textarea>
         <button onClick={() => setPassThis(stateJSON)}>
-          Save emotional state
+          View emotional state
         </button>
       </div>
-      {/* <div>EmotionalState</div>
-      {emotionalStates.map(es => (
-        <p key={es.id}>{es.name}</p>
-      ))} */}
     </>
   );
 };
