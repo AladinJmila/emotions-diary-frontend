@@ -1,5 +1,5 @@
 import './App.css';
-import EmotionalStateForm from './components/EmotionalStateForm';
+import EmotionalStateInput from './components/EmotionalStateInput';
 import EmotionsBrowser from './components/EmotionsBrowser';
 import Visualization from './components/Visualization';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className='app'>
       <Visualization />
-      <EmotionalStateForm setEmotionJSON={setEmotionJSON} />
+      <EmotionalStateInput setEmotionJSON={setEmotionJSON} />
       <EmotionsBrowser emotionJSON={emotionJSON} />
     </div>
   );

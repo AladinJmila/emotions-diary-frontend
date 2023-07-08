@@ -1,0 +1,30 @@
+.emo-form {
+  height: 100%;
+}
+
+.emo-form fieldset {
+  border: none;
+
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+}
+
+/* .emo-form .form-group, */
+.emo-form .form-group textarea {
+  height: 80px;
+}
+
+.emo-form .form-control {
+  width: 100%;
+}
+
+.emo-form textarea,
+.emo-form input {
+  border: none;
+  border-bottom: 1px solid #a2a09a;
+  background-color: #f7f5ef;
+  padding: 4px;
+}

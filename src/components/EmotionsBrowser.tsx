@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import './EmotionsBrowser.css';
-import { EmotionalState } from './EmotionalStateForm';
+import { EmotionalState } from './EmotionalStateInput';
 import axios from 'axios';
+import EmotionForm from './EmotionForm';
 
 interface Props {
   emotionJSON: string;
@@ -78,7 +79,8 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
       <div className='emo-viewer'>
         <h2>EmotionsBrowser</h2>
         <div className='emo-browser-body'>
-          {emotionalState ? (
+          <EmotionForm />
+          {/* {emotionalState ? (
             <>
               <h3>{emotionalState.name}</h3>
               <p>{emotionalState.description}</p>
@@ -117,7 +119,7 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
             </>
           ) : (
             <p className='error-msg'>Error: {error}</p>
-          )}
+          )} */}
         </div>
 
         <button

@@ -72,3 +72,8 @@ button:focus-visible {
   color: red;
   font-weight: bold;
 }
+
+textarea {
+  resize: none;
+  height: 100%;
+}

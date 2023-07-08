@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './EmotionalStateForm.css';
+import './EmotionalStateInput.css';
 
 export interface EmotionalState {
   id?: number;

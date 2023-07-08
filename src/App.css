@@ -2,5 +2,5 @@
   display: grid;
   grid-template-columns: 4fr 3fr 4fr;
   gap: 30px;
-  margin: 0 100px;
+  margin: 0 30px;
 }
