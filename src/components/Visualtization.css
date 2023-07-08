@@ -1,0 +1,23 @@
+.viz-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 10px;
+}
+
+.visualization {
+  text-align: center;
+  border: 1px solid black;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: 0.5fr 12.5fr;
+  max-height: 90vh;
+  overflow: auto;
+  gap: 10px;
+}
+
+.viz-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 130px;
+}
