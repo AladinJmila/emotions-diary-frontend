@@ -1,94 +1,106 @@
 import './EmotionForm.css';
+import { EmotionalState } from './EmotionalStateInput';
+import { useState, useEffect } from 'react';
 
-const EmotionForm = () => {
-  const foramtForTexarea = (data: string) => {
-    return data
-      .split('|')
-      .map(d => `- ${d}`)
-      .join('\n');
+interface Props {
+  emotionalState: EmotionalState | null | undefined;
+}
+
+const EmotionForm = ({ emotionalState }: Props) => {
+  const [udpateData, setUpdateData] = useState<EmotionalState>();
+
+  useEffect(() => {
+    if (emotionalState) {
+      setUpdateData(emotionalState);
+    }
+  }, [emotionalState]);
+
+  const formatForTexarea = (data: string[]): string => {
+    return data.map(d => `- ${d}`).join('\n');
   };
-  return (
-    <form onSubmit={e => console.log(e)} className='emo-form'>
-      <fieldset>
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Name</label>
+  if (emotionalState)
+    return (
+      <form onSubmit={e => console.log(e)} className='emo-form'>
+        <fieldset>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Name</label>
 
-          <input
-            name='name'
-            className='form-control'
-            type='text'
-            value='Disappointed'
-          />
-        </div>
+            <input
+              name='name'
+              className='form-control'
+              type='text'
+              value={udpateData?.name}
+            />
+          </div>
 
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Description</label>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Description</label>
 
-          <textarea name='description' className='form-control'>
-            I'm not feeling great, my wife does not let me kiss her all I want.
-            She seems busy and not wanting my attention.
-          </textarea>
-        </div>
+            <textarea
+              name='description'
+              className='form-control'
+              value={udpateData?.description}
+            ></textarea>
+          </div>
 
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Energy</label>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Energy</label>
 
-          <input
-            name='energy'
-            className='form-control'
-            type='number'
-            value='0.3'
-          />
-        </div>
+            <input
+              name='energy'
+              className='form-control'
+              type='number'
+              value={udpateData?.energy}
+            />
+          </div>
 
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Intensity</label>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Intensity</label>
 
-          <input
-            name='intensity'
-            className='form-control'
-            type='number'
-            value='0.7'
-          />
-        </div>
+            <input
+              name='intensity'
+              className='form-control'
+              type='number'
+              value={udpateData?.intensity}
+            />
+          </div>
 
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Triggers</label>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Triggers</label>
 
-          <textarea
-            name='triggers'
-            className='form-control'
-            value={foramtForTexarea(
-              "lack of physical affection|wife's busyness|feeling ignored"
-            )}
-          ></textarea>
-        </div>
+            <textarea
+              name='triggers'
+              className='form-control'
+              value={
+                udpateData?.triggers && formatForTexarea(udpateData?.triggers)
+              }
+            ></textarea>
+          </div>
 
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Coping mechanisms</label>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Coping mechanisms</label>
 
-          <textarea
-            name='coping_mechanisms'
-            className='form-control'
-            value={foramtForTexarea(
-              'communicating with my wife about my feelings|engaging in personal hobbies and activities|seeking emotional support from friends or family'
-            )}
-          ></textarea>
-        </div>
+            <textarea
+              name='coping_mechanisms'
+              className='form-control'
+              value={
+                udpateData?.copingMechanisms &&
+                formatForTexarea(udpateData?.copingMechanisms)
+              }
+            ></textarea>
+          </div>
 
-        <div className='form-group '>
-          <label className='col-sm-2 control-label '>Tags</label>
+          <div className='form-group '>
+            <label className='col-sm-2 control-label '>Tags</label>
 
-          <textarea
-            name='tags'
-            className='form-control'
-            value={foramtForTexarea(
-              'disappointment|lack of intimacy|relationship issues'
-            )}
-          ></textarea>
-        </div>
+            <textarea
+              name='tags'
+              className='form-control'
+              value={udpateData?.tags && formatForTexarea(udpateData?.tags)}
+            ></textarea>
+          </div>
 
-        {/* <div className='form-actions'>
+          {/* <div className='form-actions'>
           <button
             className='btn btn-primary js-tooltip'
             title=''
@@ -97,9 +109,9 @@ const EmotionForm = () => {
             PUT
           </button>
         </div> */}
-      </fieldset>
-    </form>
-  );
+        </fieldset>
+      </form>
+    );
 };
 
 export default EmotionForm;

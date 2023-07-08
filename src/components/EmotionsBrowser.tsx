@@ -79,7 +79,7 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
       <div className='emo-viewer'>
         <h2>EmotionsBrowser</h2>
         <div className='emo-browser-body'>
-          <EmotionForm />
+          <EmotionForm emotionalState={emotionalState} />
           {/* {emotionalState ? (
             <>
               <h3>{emotionalState.name}</h3>
