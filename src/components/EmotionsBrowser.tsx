@@ -4,7 +4,7 @@ import { EmotionalState } from './EmotionalStateForm';
 import axios from 'axios';
 
 interface Props {
-  passThis: string;
+  emotionJSON: string;
 }
 
 interface DBEmotionalSate {
@@ -18,11 +18,20 @@ interface DBEmotionalSate {
   tags: string;
 }
 
-const EmotionsBrowser = ({ passThis }: Props) => {
-  const [emotionalState, setEmotionalState] = useState<EmotionalState>();
+const EmotionsBrowser = ({ emotionJSON }: Props) => {
+  const [emotionalState, setEmotionalState] = useState<EmotionalState | null>();
+  const [error, setError] = useState('');
   useEffect(() => {
-    passThis && setEmotionalState(JSON.parse(passThis));
-  }, [passThis]);
+    if (emotionJSON) {
+      try {
+        setEmotionalState(JSON.parse(emotionJSON));
+      } catch (error: any) {
+        setError(error.message);
+        setEmotionalState(null);
+        console.log(error.message);
+      }
+    }
+  }, [emotionJSON]);
 
   const handleSave = (input: EmotionalState) => {
     const data: DBEmotionalSate = {
@@ -39,44 +48,49 @@ const EmotionsBrowser = ({ passThis }: Props) => {
   };
 
   return (
-    <div className='emotions-browser'>
+    <div className='emo-browser'>
       <h2>EmotionsBrowser</h2>
-      {emotionalState && (
-        <>
-          <h3>{emotionalState.name}</h3>
-          <p>{emotionalState.description}</p>
-          <p>
-            <b>Energy: </b>
-            {emotionalState.energy * 10}
-          </p>
-          <p>
-            <b>Intensity: </b>
-            {emotionalState.intensity * 10}
-          </p>
-          <p>Triggers:</p>
-          <ul>
-            {emotionalState.triggers.map(t => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
-          <p>Coping Mechanisms:</p>
-          <ul>
-            {emotionalState.copingMechanisms.map(cm => (
-              <li key={cm}>{cm}</li>
-            ))}
-          </ul>
-          <p>Tags:</p>
-          <div>
-            {emotionalState.tags.map(cm => (
-              <span key={cm}>{cm}, </span>
-            ))}
-          </div>
-        </>
-      )}
+      <div className='emo-browser-body'>
+        {emotionalState ? (
+          <>
+            <h3>{emotionalState.name}</h3>
+            <p>{emotionalState.description}</p>
+            <p>
+              <b>Energy: </b>
+              {emotionalState.energy * 10}
+            </p>
+            <p>
+              <b>Intensity: </b>
+              {emotionalState.intensity * 10}
+            </p>
+            <p>Triggers:</p>
+            <ul>
+              {emotionalState.triggers.map(t => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+            <p>Coping Mechanisms:</p>
+            <ul>
+              {emotionalState.copingMechanisms.map(cm => (
+                <li key={cm}>{cm}</li>
+              ))}
+            </ul>
+            <p>Tags:</p>
+            <div>
+              {emotionalState.tags.map(cm => (
+                <span key={cm}>{cm}, </span>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className='error-msg'>Error: {error}</p>
+        )}
+      </div>
+
       <button
-        className='save-btn'
-        onClick={() => handleSave(JSON.parse(passThis))}
-        disabled={Boolean(!passThis)}
+        className='emo-save-btn'
+        onClick={() => handleSave(JSON.parse(emotionJSON))}
+        disabled={Boolean(!emotionJSON)}
       >
         Save
       </button>

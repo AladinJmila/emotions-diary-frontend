@@ -5,13 +5,13 @@ import Visualization from './components/Visualization';
 import { useState } from 'react';
 
 function App() {
-  const [passThis, setPassThis] = useState('');
+  const [emotionJSON, setEmotionJSON] = useState('');
 
   return (
     <div className='app'>
       <Visualization />
-      <EmotionalStateForm setPassThis={setPassThis} />
-      <EmotionsBrowser passThis={passThis} />
+      <EmotionalStateForm setEmotionJSON={setEmotionJSON} />
+      <EmotionsBrowser emotionJSON={emotionJSON} />
     </div>
   );
 }

@@ -1,9 +1,11 @@
 .log-state {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .log-state textarea {
   border: 2px black solid;
   resize: none;
+  height: 100%;
 }

@@ -14,13 +14,12 @@ export interface EmotionalState {
 }
 
 interface Props {
-  setPassThis: (value: string) => void;
+  setEmotionJSON: (value: string) => void;
 }
 
-const EmotionalStateForm = ({ setPassThis }: Props) => {
+const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
   const [emotionalStates, setEmotionalStates] = useState<EmotionalState[]>([]);
   const [stateDescription, setStateDescription] = useState('');
-  const [stateJSON, setStateJSON] = useState('');
 
   const createPrompt = (description: string) => {
     return `
@@ -32,11 +31,11 @@ const EmotionalStateForm = ({ setPassThis }: Props) => {
     Template: {
      "name": "<Feeling name in one word>",
      "description": "<Improved/cleaned description used to generate this data>"
-     "energy": "<Feeling energy from 0 to 1 (0 to 0.5, negative energy. 0.5 to 1, positive energy)>",
+     "energy": "<Feeling energy from 0 to 1>" (Note: 0 to 0.5, negative energy. 0.5 to 1, positive energy),
      "intensity": "<Feeling intensity from 0 to 1>",
      "triggers": ["<Trigger 1>", "<Trigger 2>", "<Trigger 3>", "<Trigger 4>", "<Trigger 5>"],
      "copingMechanisms": ["<Coping Mechanism 1>", "<Coping Mechanism 2>", "<Coping Mechanism 3>", "<Coping Mechanism 4>", "<Coping Mechanism 5>"]
-     "tags": ["<tag derived from description 1>", "<tag derived from description 2>", "<tag derived from description 3>"]
+     "tags": ["<tag derived from description 1>", "<tag derived from description 2>", "<tag derived from description 3>"] (Note: avoid using the feeling name as a tag)
     }
     `;
   };
@@ -63,21 +62,12 @@ const EmotionalStateForm = ({ setPassThis }: Props) => {
       <div className='log-state'>
         <button>What's on your mind?</button>
         <textarea
-          cols={50}
-          rows={25}
           onChange={e => setStateDescription(e.target.value)}
         ></textarea>
         <button onClick={handleAskChatGPT}>
           Ask ChatGPT and bring back the data to paste in box below
         </button>
-        <textarea
-          cols={50}
-          rows={25}
-          onChange={e => setStateJSON(e.target.value)}
-        ></textarea>
-        <button onClick={() => setPassThis(stateJSON)}>
-          View emotional state
-        </button>
+        <textarea onChange={e => setEmotionJSON(e.target.value)}></textarea>
       </div>
     </>
   );
