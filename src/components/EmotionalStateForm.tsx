@@ -18,7 +18,6 @@ interface Props {
 }
 
 const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
-  const [emotionalStates, setEmotionalStates] = useState<EmotionalState[]>([]);
   const [stateDescription, setStateDescription] = useState('');
 
   const createPrompt = (description: string) => {
@@ -48,14 +47,6 @@ const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
       .then(() => console.log('Text copied to clipboard'))
       .catch(error => console.log('Failed to copy text:', error));
   };
-
-  useEffect(() => {
-    axios
-      .get('http://127.0.0.1:8000/api/emotional-states/')
-      .then((res: any) => {
-        setEmotionalStates(res.data);
-      });
-  }, []);
 
   return (
     <>

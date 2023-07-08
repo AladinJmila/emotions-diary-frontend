@@ -1,4 +1,10 @@
 .emo-browser {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  gap: 10px;
+}
+
+.emo-viewer {
   border: 1px solid black;
   padding: 20px;
   display: grid;
@@ -7,7 +13,13 @@
   overflow: auto;
   gap: 10px;
 }
-.emo-browser h2 {
+.emo-viewer h2 {
   text-align: center;
   margin-bottom: 50px;
+}
+
+.emo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
