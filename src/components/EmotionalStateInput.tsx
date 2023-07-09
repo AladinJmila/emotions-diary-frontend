@@ -28,7 +28,7 @@ const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
     ${description}
     
     Template: {
-     "name": "<Feeling name in one word>",
+     "name": "<Feeling name in one word with first letter capitalized>",
      "description": "<Improved/cleaned description used to generate this data>"
      "energy": "<Feeling energy from 0 to 1>" (Note: 0 to 0.5, negative energy. 0.5 to 1, positive energy),
      "intensity": "<Feeling intensity from 0 to 1>",

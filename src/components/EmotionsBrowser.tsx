@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import './EmotionsBrowser.css';
 import { EmotionalState } from './EmotionalStateInput';
 import apiClient from '../services/api-client';
-// import EmotionForm from './EmotionForm';
+import EmotionForm from './EmotionForm';
+import { BsFillPencilFill } from 'react-icons/bs';
 
 interface Props {
   emotionJSON: string;
@@ -27,6 +28,7 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
   const [emotionalStates, setEmotionalStates] = useState<EmotionalState[]>([]);
   const [emotionalState, setEmotionalState] = useState<EmotionalState | null>();
   const [error, setError] = useState('');
+  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     apiClient.get('/emotional-states/').then((res: Response) => {
@@ -68,55 +70,62 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
       coping_mechanisms: input.copingMechanisms.join('|'),
       tags: input.tags.join('|'),
     };
-    console.log(data);
     apiClient.post('/emotional-states/', data);
   };
 
   return (
     <div className='emo-browser'>
       <div className='emo-viewer'>
+        <button className='edit-btn' onClick={() => setEdit(!edit)}>
+          <BsFillPencilFill />
+        </button>
         <h2>EmotionsBrowser</h2>
         <div className='emo-browser-body'>
-          {/* <EmotionForm emotionalState={emotionalState} /> */}
-          {emotionalState ? (
-            <>
-              <h3>{emotionalState.name}</h3>
-              <p>{emotionalState.description}</p>
-              <p>
-                <b>Energy: </b>
-                {emotionalState.energy * 10}
-              </p>
-              <p>
-                <b>Intensity: </b>
-                {emotionalState.intensity * 10}
-              </p>
-              <p>
-                <b>Triggers:</b>
-              </p>
-              <ul>
-                {emotionalState.triggers.map(t => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-              <p>
-                <b>Coping Mechanisms:</b>
-              </p>
-              <ul>
-                {emotionalState.copingMechanisms.map(cm => (
-                  <li key={cm}>{cm}</li>
-                ))}
-              </ul>
-              <p>
-                <b>Tags:</b>
-              </p>
-              <div>
-                {emotionalState.tags.map(cm => (
-                  <span key={cm}>{cm}, </span>
-                ))}
-              </div>
-            </>
+          {edit ? (
+            <EmotionForm emotionalState={emotionalState} />
           ) : (
-            <p className='error-msg'>Error: {error}</p>
+            <>
+              {emotionalState ? (
+                <>
+                  <h3>{emotionalState.name}</h3>
+                  <p>{emotionalState.description}</p>
+                  <p>
+                    <b>Energy: </b>
+                    {emotionalState.energy * 10}
+                  </p>
+                  <p>
+                    <b>Intensity: </b>
+                    {emotionalState.intensity * 10}
+                  </p>
+                  <p>
+                    <b>Triggers:</b>
+                  </p>
+                  <ul>
+                    {emotionalState.triggers.map(t => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    <b>Coping Mechanisms:</b>
+                  </p>
+                  <ul>
+                    {emotionalState.copingMechanisms.map(cm => (
+                      <li key={cm}>{cm}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    <b>Tags:</b>
+                  </p>
+                  <div>
+                    {emotionalState.tags.map(cm => (
+                      <span key={cm}>{cm}, </span>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p className='error-msg'>Error: {error}</p>
+              )}
+            </>
           )}
         </div>
 
