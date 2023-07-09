@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import './EmotionalStateInput.css';
 
 export interface EmotionalState {
@@ -22,7 +21,8 @@ const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
 
   const createPrompt = (description: string) => {
     return `
-    Using this description, generate a json object and populate the field with the relative data
+    Using this description, generate a json object and populate the field with the relative data. If you find that the description is talking about multiple emotions, seperate them and generate the data for each.
+    (Note: always try not to leave and field empty or without data)
     Description:
     
     ${description}
@@ -34,7 +34,7 @@ const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
      "intensity": "<Feeling intensity from 0 to 1>",
      "triggers": ["<Trigger 1>", "<Trigger 2>", "<Trigger 3>", "<Trigger 4>", "<Trigger 5>"],
      "copingMechanisms": ["<Coping Mechanism 1>", "<Coping Mechanism 2>", "<Coping Mechanism 3>", "<Coping Mechanism 4>", "<Coping Mechanism 5>"]
-     "tags": ["<tag derived from description 1>", "<tag derived from description 2>", "<tag derived from description 3>"] (Note: avoid using the feeling name as a tag)
+     "tags": ["<tag derived from description 1>", "<tag derived from description 2>", "<tag derived from description 3>"] (Note: do not using the feeling name as a tag)
     }
     `;
   };

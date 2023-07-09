@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './EmotionsBrowser.css';
 import { EmotionalState } from './EmotionalStateInput';
-import axios from 'axios';
+import apiClient from '../services/api-client';
 import EmotionForm from './EmotionForm';
 
 interface Props {
@@ -29,11 +29,9 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios
-      .get('http://127.0.0.1:8000/api/emotional-states/')
-      .then((res: Response) => {
-        setEmotionalStates(res.data.map(emo => DBtoUIemo(emo)));
-      });
+    apiClient.get('/emotional-states/').then((res: Response) => {
+      setEmotionalStates(res.data.map(emo => DBtoUIemo(emo)));
+    });
   }, []);
 
   const DBtoUIemo = (emo: DBEmotionalSate): EmotionalState => {
@@ -71,7 +69,7 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
       tags: input.tags.join('|'),
     };
     console.log(data);
-    axios.post('http://127.0.0.1:8000/api/emotional-states/', data);
+    apiClient.post('/emotional-states/', data);
   };
 
   return (
@@ -79,8 +77,8 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
       <div className='emo-viewer'>
         <h2>EmotionsBrowser</h2>
         <div className='emo-browser-body'>
-          <EmotionForm emotionalState={emotionalState} />
-          {/* {emotionalState ? (
+          {/* <EmotionForm emotionalState={emotionalState} /> */}
+          {emotionalState ? (
             <>
               <h3>{emotionalState.name}</h3>
               <p>{emotionalState.description}</p>
@@ -119,7 +117,7 @@ const EmotionsBrowser = ({ emotionJSON }: Props) => {
             </>
           ) : (
             <p className='error-msg'>Error: {error}</p>
-          )} */}
+          )}
         </div>
 
         <button
