@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './EmotionsBrowser.css';
 import { EmotionalState } from './EmotionalStateInput';
 import apiClient from '../services/api-client';
-import EmotionForm from './EmotionForm';
+// import EmotionForm from './EmotionForm';
 
 interface Props {
   emotionJSON: string;
