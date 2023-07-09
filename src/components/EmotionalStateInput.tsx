@@ -36,6 +36,8 @@ const EmotionalStateForm = ({ setEmotionJSON }: Props) => {
      "copingMechanisms": ["<Coping Mechanism 1>", "<Coping Mechanism 2>", "<Coping Mechanism 3>", "<Coping Mechanism 4>", "<Coping Mechanism 5>"]
      "tags": ["<tag derived from description 1>", "<tag derived from description 2>", "<tag derived from description 3>"] (Note: do not using the feeling name as a tag)
     }
+
+    Don't leave empty fields!
     `;
   };
 
